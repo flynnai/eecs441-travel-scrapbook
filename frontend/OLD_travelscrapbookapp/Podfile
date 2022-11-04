@@ -8,6 +8,7 @@ target 'travelscrapbookapp' do
   # Pods for swiftChatter
   pod 'SDWebImage'
   pod 'Alamofire'
+  pod 'GoogleMaps'
 
 end
 

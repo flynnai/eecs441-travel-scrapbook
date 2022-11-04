@@ -10,7 +10,7 @@
 		0CB6E22DD7D698516964CF28 /* Pods_travelscrapbookapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */; };
 		EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */; };
 		EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */; };
-		EBE0C91C2910A9DD008D5BB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C91B2910A9DD008D5BB1 /* ViewController.swift */; };
+		EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */; };
 		EBE0C91F2910A9DD008D5BB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE0C91D2910A9DD008D5BB1 /* Main.storyboard */; };
 		EBE0C9212910A9DD008D5BB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE0C9202910A9DD008D5BB1 /* Assets.xcassets */; };
 		EBE0C9242910A9DD008D5BB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE0C9222910A9DD008D5BB1 /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelscrapbookapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EBE0C91B2910A9DD008D5BB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		EBE0C91E2910A9DD008D5BB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBE0C9202910A9DD008D5BB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBE0C9232910A9DD008D5BB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,6 @@
 				D3041E4F72D8D0BEDD423095 /* Pods-travelscrapbookapp.debug.xcconfig */,
 				0E3BCA056E2CFCBF6E86D0D2 /* Pods-travelscrapbookapp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,7 +82,7 @@
 			children = (
 				EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */,
 				EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */,
-				EBE0C91B2910A9DD008D5BB1 /* ViewController.swift */,
+				EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */,
 				EBE0C91D2910A9DD008D5BB1 /* Main.storyboard */,
 				EBE0C9202910A9DD008D5BB1 /* Assets.xcassets */,
 				EBE0C9222910A9DD008D5BB1 /* LaunchScreen.storyboard */,
@@ -104,6 +103,7 @@
 				EBE0C9112910A9DD008D5BB1 /* Frameworks */,
 				EBE0C9122910A9DD008D5BB1 /* Resources */,
 				6401279614BB6D6AA40B123D /* [CP] Embed Pods Frameworks */,
+				F0453D0630C06BF42ADFE43B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,6 +200,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F0453D0630C06BF42ADFE43B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -207,7 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBE0C91C2910A9DD008D5BB1 /* ViewController.swift in Sources */,
+				EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */,
 				EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */,
 				EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */,
 			);
