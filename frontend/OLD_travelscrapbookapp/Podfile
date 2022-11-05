@@ -9,6 +9,7 @@ target 'travelscrapbookapp' do
   pod 'SDWebImage'
   pod 'Alamofire'
   pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
 
 end
 

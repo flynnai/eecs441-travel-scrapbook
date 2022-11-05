@@ -15,9 +15,21 @@
 
 import UIKit
 import GoogleMaps
+import GoogleMapsUtils
 
-class ViewController: UIViewController {
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+}
+      
 
+class ViewController: UIViewController, GMSMapViewDelegate {
+    private var mapView: GMSMapView!
+    private var clusterManager: GMUClusterManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,7 +45,62 @@ class ViewController: UIViewController {
         marker.title = "Sydney"
         marker.snippet = "Australia"
         marker.map = mapView
+        let image = UIImage(named: "cat.jpg")
+        let resizedImage = image?.resized(to: CGSize(width: 70, height: 70))
+        marker.icon = resizedImage
+        
+        // Set up the cluster manager with the supplied icon generator and
+        // renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
+                                    clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,
+                                                          renderer: renderer)
+
+        // Register self to listen to GMSMapViewDelegate events.
+        clusterManager.setMapDelegate(self)
+        // ...
+          let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
+          let marker1 = GMSMarker(position: position1)
+        marker1.map = mapView
+        marker1.icon = resizedImage
+        
+          let position2 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.46)
+          let marker2 = GMSMarker(position: position2)
+        marker2.map = mapView
+        marker2.icon = resizedImage
+        
+          let position3 = CLLocationCoordinate2D(latitude: 47.30, longitude: -122.46)
+          let marker3 = GMSMarker(position: position3)
+        marker3.map = mapView
+        marker3.icon = resizedImage
+
+          let position4 = CLLocationCoordinate2D(latitude: 47.20, longitude: -122.23)
+          let marker4 = GMSMarker(position: position4)
+        marker4.map = mapView
+        marker4.icon = resizedImage
+
+          let markerArray = [marker, marker1, marker2, marker3, marker4]
+          clusterManager.add(markerArray)
+          clusterManager.cluster()
+        
+        
   }
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+      // center the map on tapped marker
+      mapView.animate(toLocation: marker.position)
+      // check if a cluster icon was tapped
+      if marker.userData is GMUCluster {
+        // zoom in on tapped cluster
+        mapView.animate(toZoom: mapView.camera.zoom + 1)
+        NSLog("Did tap cluster")
+        return true
+      }
+
+      NSLog("Did tap a normal marker")
+      return false
+    }
 }
 
       
