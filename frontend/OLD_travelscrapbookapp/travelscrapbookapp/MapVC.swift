@@ -17,6 +17,7 @@ import UIKit
 import GoogleMaps
 import GoogleMapsUtils
 
+// for resizing photos
 extension UIImage {
     func resized(to size: CGSize) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { _ in
@@ -24,7 +25,7 @@ extension UIImage {
         }
     }
 }
-      
+
 
 class ViewController: UIViewController, GMSMapViewDelegate {
     private var mapView: GMSMapView!
@@ -34,11 +35,12 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        // se default coordinates and zoom level .
+        let camera = GMSCameraPosition.camera(withLatitude: 47.60, longitude: -122.33, zoom: 4.0)
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
 
+        
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
@@ -60,7 +62,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
         // Register self to listen to GMSMapViewDelegate events.
         clusterManager.setMapDelegate(self)
-        // ...
+        
+        // add places markers
           let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
           let marker1 = GMSMarker(position: position1)
         marker1.map = mapView
@@ -80,13 +83,20 @@ class ViewController: UIViewController, GMSMapViewDelegate {
           let marker4 = GMSMarker(position: position4)
         marker4.map = mapView
         marker4.icon = resizedImage
-
+        
+          // clusters markers
           let markerArray = [marker, marker1, marker2, marker3, marker4]
           clusterManager.add(markerArray)
           clusterManager.cluster()
         
+        // draw paths
+         draw(src: position1, dst: position2, mapView: mapView )
+         draw(src: position2, dst: position3, mapView: mapView )
+         draw(src: position3, dst: position4, mapView: mapView )
+        
         
   }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
       // center the map on tapped marker
       mapView.animate(toLocation: marker.position)
@@ -101,6 +111,19 @@ class ViewController: UIViewController, GMSMapViewDelegate {
       NSLog("Did tap a normal marker")
       return false
     }
+    
+
+    func draw(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D, mapView: GMSMapView) {
+        let path = GMSMutablePath()
+        path.add(src)
+        path.add(dst)
+
+        let polyline = GMSPolyline(path: path)
+        polyline.map = mapView
+        polyline.strokeColor = UIColor.red
+        polyline.strokeWidth = 3
+    }
+
 }
 
       
