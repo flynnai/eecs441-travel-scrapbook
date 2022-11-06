@@ -36,7 +36,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         // Do any additional setup after loading the view.
         // Create a GMSCameraPosition that tells the map to display the
         // se default coordinates and zoom level .
-        let camera = GMSCameraPosition.camera(withLatitude: 47.60, longitude: -122.33, zoom: 4.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 43.60, longitude: -100, zoom: 3.0)
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
 
@@ -103,7 +103,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
       // check if a cluster icon was tapped
       if marker.userData is GMUCluster {
         // zoom in on tapped cluster
-        mapView.animate(toZoom: mapView.camera.zoom + 1)
+        mapView.animate(toZoom: mapView.camera.zoom + 3)
         NSLog("Did tap cluster")
         return true
       }
@@ -121,7 +121,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         let polyline = GMSPolyline(path: path)
         polyline.map = mapView
         polyline.strokeColor = UIColor.red
-        polyline.strokeWidth = 3
+        polyline.strokeWidth = 5
     }
 
 }
