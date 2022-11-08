@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0CB6E22DD7D698516964CF28 /* Pods_travelscrapbookapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */; };
 		E1623CF82915D41500CBFFBE /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1623CF72915D41400CBFFBE /* cat.jpg */; };
+		E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AE5220291B1F510016FEF6 /* AddTripVC.swift */; };
 		EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */; };
 		EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */; };
 		EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */; };
@@ -22,6 +23,7 @@
 		CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelscrapbookapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3041E4F72D8D0BEDD423095 /* Pods-travelscrapbookapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelscrapbookapp.debug.xcconfig"; path = "Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp.debug.xcconfig"; sourceTree = "<group>"; };
 		E1623CF72915D41400CBFFBE /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cat.jpg; path = ../../../../cat.jpg; sourceTree = "<group>"; };
+		E1AE5220291B1F510016FEF6 /* AddTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripVC.swift; sourceTree = "<group>"; };
 		EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelscrapbookapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */,
 				E1623CF72915D41400CBFFBE /* cat.jpg */,
 				EBE0C91D2910A9DD008D5BB1 /* Main.storyboard */,
+				E1AE5220291B1F510016FEF6 /* AddTripVC.swift */,
 				EBE0C9202910A9DD008D5BB1 /* Assets.xcassets */,
 				EBE0C9222910A9DD008D5BB1 /* LaunchScreen.storyboard */,
 				EBE0C9252910A9DD008D5BB1 /* Info.plist */,
@@ -231,6 +234,7 @@
 				EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */,
 				EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */,
 				EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */,
+				E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

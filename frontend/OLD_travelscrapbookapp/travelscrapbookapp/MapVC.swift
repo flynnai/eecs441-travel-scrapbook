@@ -32,6 +32,8 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
     
+    
+    @IBOutlet var addTrip: UIButton!
     @IBOutlet var gallery: UIButton!
     
     override func viewDidLoad() {
@@ -43,6 +45,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
         self.view.addSubview(gallery)
+        self.view.addSubview(addTrip)
         
         // Creates a marker in the center of the map
         let marker = GMSMarker()
