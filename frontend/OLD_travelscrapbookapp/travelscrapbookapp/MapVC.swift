@@ -27,9 +27,12 @@ extension UIImage {
 }
 
 
-class ViewController: UIViewController, GMSMapViewDelegate {
+class MapVC: UIViewController, GMSMapViewDelegate {
+    
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
+    
+    @IBOutlet var gallery: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +42,9 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: 43.60, longitude: -100, zoom: 3.0)
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
-
+        self.view.addSubview(gallery)
         
-        // Creates a marker in the center of the map.
+        // Creates a marker in the center of the map
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
         marker.title = "Sydney"
