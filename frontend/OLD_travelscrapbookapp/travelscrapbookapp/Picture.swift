@@ -15,7 +15,7 @@ struct Picture {
     var image: UIImage
     var date: String?
 
-    static func getPhotos() {
+    static func getPhotos() async throws -> [Picture] {
         // accessing all photos https://stackoverflow.com/a/59858805
         let manager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
@@ -25,41 +25,45 @@ struct Picture {
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false /* latest first */)]
 
         let results: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        if results.count > 0 {
+        guard results.count > 0 else {
+            return []
+        }
+
+        let photosTask = Task {
+            var pictures: [Picture] = []
             let max = 10
             let max2 = results.count < max ? results.count : max
-            Task {
-                for i in 0 ..< max2 {
-                    print("\(i)")
-                    let asset = results.object(at: i)
+            for i in 0 ..< max2 {
+                let asset = results.object(at: i)
 
-                    await withCheckedContinuation { cont in // sequentialize callback function
-                        manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
-                            if let data = data {
-                                // ImageIO metadata https://stackoverflow.com/a/52024197
-                                let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
-                                if let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) {
-                                    let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) as! [String: Any]
-                                    let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String
-                                    let image = UIImage(data: data as Data)!
-                                    let picture = Picture(
-                                        uId: asset.localIdentifier,
-                                        data: data,
-                                        image: image,
-                                        date: date
-                                    )
-                                    print(picture)
-                                    cont.resume()
-                                }
-                            } else {
-                                print("bad data")
+                await withCheckedContinuation { cont in // sequentialize callback function
+                    manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
+                        if let data = data {
+                            // ImageIO metadata https://stackoverflow.com/a/52024197
+                            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
+                            if let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) {
+                                let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) as! [String: Any]
+                                let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String
+                                let image = UIImage(data: data as Data)!
+                                let picture = Picture(
+                                    uId: asset.localIdentifier,
+                                    data: data,
+                                    image: image,
+                                    date: date
+                                )
+                                pictures.append(picture)
+                                cont.resume()
                             }
+                        } else {
+                            print("photo \(i): bad data")
                         }
                     }
                 }
             }
-        } else {
-            print("no photos to display")
+
+            return pictures
         }
+
+        return try await photosTask.result.get()
     }
 }
