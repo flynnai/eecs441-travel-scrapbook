@@ -13,7 +13,9 @@ struct Picture {
     var uId: String // unique identifier (since filename is not unique)
     var data: Data
     var image: UIImage
-    var date: String?
+    var date: Date?
+    var lat: Double?
+    var long: Double?
 
     static func getPhotos() async throws -> [Picture] {
         // accessing all photos https://stackoverflow.com/a/59858805
@@ -29,12 +31,18 @@ struct Picture {
             return []
         }
 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
+
         let photosTask = Task { () -> [Picture] in
             var pictures: [Picture] = []
             let max = 10
             let max2 = results.count < max ? results.count : max
             for i in 0 ..< max2 {
                 let asset = results.object(at: i)
+                let coordinate = asset.location?.coordinate
+                let lat = coordinate != nil ? coordinate!.latitude : nil
+                let long = coordinate != nil ? coordinate!.longitude : nil
 
                 await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in // sequentialize callback function
                     manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
@@ -49,7 +57,9 @@ struct Picture {
                                     uId: asset.localIdentifier,
                                     data: data,
                                     image: image,
-                                    date: date
+                                    date: date != nil ? dateFormatter.date(from: date!) : nil,
+                                    lat: lat,
+                                    long: long
                                 )
                                 pictures.append(picture)
                             }
