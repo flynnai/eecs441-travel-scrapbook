@@ -36,7 +36,7 @@ struct Picture {
             for i in 0 ..< max2 {
                 let asset = results.object(at: i)
 
-                await withCheckedContinuation { (cont: CheckedContinuation<String, Never>) in // sequentialize callback function
+                await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in // sequentialize callback function
                     manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
                         if let data = data {
                             // ImageIO metadata https://stackoverflow.com/a/52024197
@@ -56,7 +56,7 @@ struct Picture {
                         } else {
                             print("photo \(i): bad data")
                         }
-                        cont.resume(returning: "")
+                        cont.resume()
                     }
                 }
             }
