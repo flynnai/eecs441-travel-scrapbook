@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,7 +43,7 @@
                                     <backgroundConfiguration key="background" image="plus.circle" catalog="system"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="xDD-Tb-005" kind="presentation" id="hiO-Rl-L5u"/>
+                                    <segue destination="it8-z3-y4I" kind="show" id="YzO-hk-9tx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,14 +67,16 @@
             </objects>
             <point key="canvasLocation" x="-1917" y="-124"/>
         </scene>
-        <!--Add Trip-->
+        <!--OLD Add Trip-->
         <scene sceneID="yRL-vT-VQ1">
             <objects>
-                <tableViewController id="6f2-dV-K6D" sceneMemberID="viewController">
+                <exit id="DzR-lR-oDs" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ps5-Ak-dWr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tableViewController title="OLD Add Trip" id="6f2-dV-K6D" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Add Trip" id="KDW-K0-e9t">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Fxp-fe-Pil">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="A95-KR-lFk">
-                                <rect key="frame" x="-33" y="-15" width="86" height="31"/>
+                                <rect key="frame" x="288" y="11" width="86" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -85,35 +87,75 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ps5-Ak-dWr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="DzR-lR-oDs" userLabel="Exit" sceneMemberID="exit"/>
-                <view contentMode="scaleToFill" id="bk2-JD-mbs">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <viewLayoutGuide key="safeArea" id="9cz-fG-mnb"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
             </objects>
-            <point key="canvasLocation" x="-99" y="-124"/>
+            <point key="canvasLocation" x="-934" y="-813"/>
+        </scene>
+        <!--Add Trip-->
+        <scene sceneID="hZl-wQ-ujh">
+            <objects>
+                <viewController title="Add Trip" id="sxc-Qh-AuM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hNK-n3-BYX">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EW8-x1-Kuk">
+                                <rect key="frame" x="50" y="157" width="175" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fP-Mg-zIs">
+                                <rect key="frame" x="50" y="218" width="175" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8R-U0-ato">
+                                <rect key="frame" x="31" y="407" width="327" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Upload Pictures"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYo-a7-slc">
+                                <rect key="frame" x="41" y="495" width="317" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Add Trip"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gNM-AU-jD7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Trip" id="bCk-qr-4tk">
+                        <barButtonItem key="leftBarButtonItem" title="Back" image="arrow.left" catalog="system" id="LNp-ym-tvc"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qb8-eA-VMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="-124.40758293838861"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Uje-IV-hLw">
+        <scene sceneID="ZmH-fY-dPc">
             <objects>
-                <navigationController id="xDD-Tb-005" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="khZ-77-rdv">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="it8-z3-y4I" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xUu-KA-pCV"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLl-qL-3CT">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6f2-dV-K6D" kind="relationship" relationship="rootViewController" id="x9w-EA-dCm"/>
+                        <segue destination="sxc-Qh-AuM" kind="relationship" relationship="rootViewController" id="NAR-zk-lRx"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FHm-mU-DwL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbX-6I-JfI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1007" y="-124"/>
+            <point key="canvasLocation" x="-935" y="-124"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
