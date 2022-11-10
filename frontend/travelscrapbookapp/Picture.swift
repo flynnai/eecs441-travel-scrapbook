@@ -13,11 +13,16 @@ struct Picture {
     var uId: String // unique identifier (since filename is not unique)
     var data: Data
     var image: UIImage
-    var date: Date?
-    var lat: Double?
-    var long: Double?
+    var date: Date
+    var lat: Double
+    var long: Double
 
+    // return all pictures in the user's photo library
+    // discards photos that don't have a location or date
     static func getPhotos() async throws -> [Picture] {
+        // TODO for MVP: take list of uIDs and return tuple of two lists,
+        // one for included images and one for deleted images
+
         // accessing all photos https://stackoverflow.com/a/59858805
         let manager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
@@ -38,30 +43,34 @@ struct Picture {
             var pictures: [Picture] = []
             let max = 10
             let max2 = results.count < max ? results.count : max
+
             for i in 0 ..< max2 {
                 let asset = results.object(at: i)
                 let coordinate = asset.location?.coordinate
-                let lat = coordinate != nil ? coordinate!.latitude : nil
-                let long = coordinate != nil ? coordinate!.longitude : nil
+                guard coordinate != nil else {
+                    continue
+                }
 
                 await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in // sequentialize callback function
                     manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
                         if let data = data {
                             // ImageIO metadata https://stackoverflow.com/a/52024197
+                            let image = UIImage(data: data as Data)!
+
                             let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
                             if let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) {
                                 let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) as! [String: Any]
-                                let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String
-                                let image = UIImage(data: data as Data)!
-                                let picture = Picture(
-                                    uId: asset.localIdentifier,
-                                    data: data,
-                                    image: image,
-                                    date: date != nil ? dateFormatter.date(from: date!) : nil,
-                                    lat: lat,
-                                    long: long
-                                )
-                                pictures.append(picture)
+                                if let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String {
+                                    let picture = Picture(
+                                        uId: asset.localIdentifier,
+                                        data: data,
+                                        image: image,
+                                        date: dateFormatter.date(from: date)!,
+                                        lat: coordinate!.latitude,
+                                        long: coordinate!.longitude
+                                    )
+                                    pictures.append(picture)
+                                }
                             }
                         } else {
                             print("photo \(i): bad data")
