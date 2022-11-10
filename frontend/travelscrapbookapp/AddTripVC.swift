@@ -22,32 +22,38 @@ final class AddTripVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         let dateStartPicker = UIDatePicker()
         dateStartPicker.datePickerMode = .date
         dateStartPicker.addTarget(self, action: #selector(dateStartChange(dateStartPicker:)), for: UIControl.Event.valueChanged)
         dateStartPicker.preferredDatePickerStyle = .wheels
+        dateStartPicker.maximumDate = Date()
         
         pickStartDate.inputView = dateStartPicker
-        pickStartDate.text = formatDate(date: Date())  // Initialized with today's date
+        //pickStartDate.text = formatDate(date: Date())  // Text field initialized with today's date
         
         let dateEndPicker = UIDatePicker()
         dateEndPicker.datePickerMode = .date
         dateEndPicker.addTarget(self, action: #selector(dateEndChange(dateEndPicker:)), for: UIControl.Event.valueChanged)
         dateEndPicker.preferredDatePickerStyle = .wheels
+        dateEndPicker.maximumDate = Date()
         
         pickEndDate.inputView = dateEndPicker
-        pickEndDate.text = formatDate(date: Date())  // Initialized with today's date
+        //pickEndDate.text = formatDate(date: Date())  // Text field initialized with today's date
     }
     
+    // On change of the date picker value this function runs
     @objc func dateStartChange(dateStartPicker: UIDatePicker){
         pickStartDate.text = formatDate(date: dateStartPicker.date)
-        
     }
     
+    // On change of the date picker value this function runs
     @objc func dateEndChange(dateEndPicker: UIDatePicker){
         pickEndDate.text = formatDate(date: dateEndPicker.date)
-        
     }
+    
+    // Use the pickStartDate.text and pickEndDate.text and store in a data structure/sql db
+    // If either the pickStartDate.text and pickEndDate.text is not a date format don't let the Upload Photos button do anything
     
     func formatDate(date: Date) -> String{
         let formatter = DateFormatter()
