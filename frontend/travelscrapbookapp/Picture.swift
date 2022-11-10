@@ -29,14 +29,14 @@ struct Picture {
             return []
         }
 
-        let photosTask = Task {
+        let photosTask = Task { () -> [Picture] in
             var pictures: [Picture] = []
             let max = 10
             let max2 = results.count < max ? results.count : max
             for i in 0 ..< max2 {
                 let asset = results.object(at: i)
 
-                await withCheckedContinuation { cont in // sequentialize callback function
+                await withCheckedContinuation { (cont: CheckedContinuation<String, Never>) in // sequentialize callback function
                     manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
                         if let data = data {
                             // ImageIO metadata https://stackoverflow.com/a/52024197
@@ -52,11 +52,11 @@ struct Picture {
                                     date: date
                                 )
                                 pictures.append(picture)
-                                cont.resume()
                             }
                         } else {
                             print("photo \(i): bad data")
                         }
+                        cont.resume(returning: "")
                     }
                 }
             }
