@@ -72,51 +72,60 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         // Register self to listen to GMSMapViewDelegate events.
         clusterManager.setMapDelegate(self)
         
-        let myTrip = Trip(title: "Some trip!!!", photos: [])
+        let currTrip = Trip(title: "Some trip!!!", photos: [])
+              
         
         var prevPosition: CLLocationCoordinate2D? = nil
-        for photo in myTrip.photos {
+        var markerArray: [GMSMarker] = []
+        for photo in currTrip.photos {
+            print("Trying to draw photo with UID \(photo.uId)...")
             let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
             let marker = GMSMarker(position: position)
             marker.map = mapView
-            marker.icon = photo.image
+            let resizedImage = photo.image.resized(to: CGSize(width: 70, height: 70))
+            marker.icon = resizedImage
             if let prevPosition = prevPosition {
+                print("Drawing line between prev photo and this one...")
                 draw(src: prevPosition, dst: position, mapView: mapView )
             }
             prevPosition = position
+            markerArray.append(marker)
         }
+        clusterManager.add(markerArray)
         
-        // add places markers
-          let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
-          let marker1 = GMSMarker(position: position1)
-        marker1.map = mapView
-        marker1.icon = resizedImage
+        clusterManager.cluster()
         
-          let position2 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.46)
-          let marker2 = GMSMarker(position: position2)
-        marker2.map = mapView
-        marker2.icon = resizedImage
-        
-          let position3 = CLLocationCoordinate2D(latitude: 47.30, longitude: -122.46)
-          let marker3 = GMSMarker(position: position3)
-        marker3.map = mapView
-        marker3.icon = resizedImage
-
-          let position4 = CLLocationCoordinate2D(latitude: 47.20, longitude: -122.23)
-          let marker4 = GMSMarker(position: position4)
-        marker4.map = mapView
-        marker4.icon = resizedImage
-        
-          // clusters markers
-          let markerArray = [marker, marker1, marker2, marker3, marker4]
-          clusterManager.add(markerArray)
-          clusterManager.cluster()
-        
-        // draw paths
-         draw(src: position1, dst: position2, mapView: mapView )
-         draw(src: position2, dst: position3, mapView: mapView )
-         draw(src: position3, dst: position4, mapView: mapView )
-        
+//        // add places markers
+//          let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
+//          let marker1 = GMSMarker(position: position1)
+//        marker1.map = mapView
+//        marker1.icon = resizedImage
+//
+//          let position2 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.46)
+//          let marker2 = GMSMarker(position: position2)
+//        marker2.map = mapView
+//        marker2.icon = resizedImage
+//
+//          let position3 = CLLocationCoordinate2D(latitude: 47.30, longitude: -122.46)
+//          let marker3 = GMSMarker(position: position3)
+//        marker3.map = mapView
+//        marker3.icon = resizedImage
+//
+//          let position4 = CLLocationCoordinate2D(latitude: 47.20, longitude: -122.23)
+//          let marker4 = GMSMarker(position: position4)
+//        marker4.map = mapView
+//        marker4.icon = resizedImage
+//
+//          // clusters markers
+//          let markerArray = [marker, marker1, marker2, marker3, marker4]
+//          clusterManager.add(markerArray)
+//          clusterManager.cluster()
+//
+//        // draw paths
+//         draw(src: position1, dst: position2, mapView: mapView )
+//         draw(src: position2, dst: position3, mapView: mapView )
+//         draw(src: position3, dst: position4, mapView: mapView )
+//
         
   }
     
