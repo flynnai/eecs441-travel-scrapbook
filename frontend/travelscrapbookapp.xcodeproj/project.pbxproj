@@ -13,6 +13,10 @@
 		84E96D4F291D68C600355198 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E96D4C291D68C500355198 /* Trip.swift */; };
 		84E96D50291D68C600355198 /* TripPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E96D4D291D68C500355198 /* TripPhoto.swift */; };
 		84E96D51291D68C600355198 /* TripStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E96D4E291D68C600355198 /* TripStore.swift */; };
+		E14469F6291D707400AA6ECF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E14469F5291D707400AA6ECF /* FirebaseAuth */; };
+		E14469FC291EB04B00AA6ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E14469FB291EB04B00AA6ECF /* GoogleService-Info.plist */; };
+		E14469FE291EB05800AA6ECF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14469FD291EB05800AA6ECF /* LoginViewController.swift */; };
+		E1446A00291EB06100AA6ECF /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14469FF291EB06100AA6ECF /* CreateAccountViewController.swift */; };
 		E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AE5220291B1F510016FEF6 /* AddTripVC.swift */; };
 		EB79921C291C8FE70048C1EF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB79921B291C8FE70048C1EF /* extensions.swift */; };
 		EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */; };
@@ -32,6 +36,9 @@
 		84E96D4E291D68C600355198 /* TripStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripStore.swift; sourceTree = "<group>"; };
 		CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelscrapbookapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3041E4F72D8D0BEDD423095 /* Pods-travelscrapbookapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelscrapbookapp.debug.xcconfig"; path = "Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp.debug.xcconfig"; sourceTree = "<group>"; };
+		E14469FB291EB04B00AA6ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E14469FD291EB05800AA6ECF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E14469FF291EB06100AA6ECF /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		E1AE5220291B1F510016FEF6 /* AddTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripVC.swift; sourceTree = "<group>"; };
 		EB79921B291C8FE70048C1EF /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelscrapbookapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CB6E22DD7D698516964CF28 /* Pods_travelscrapbookapp.framework in Frameworks */,
+				E14469F6291D707400AA6ECF /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +109,11 @@
 				EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */,
 				EB79921B291C8FE70048C1EF /* extensions.swift */,
 				EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */,
+				E14469FF291EB06100AA6ECF /* CreateAccountViewController.swift */,
+				E14469FD291EB05800AA6ECF /* LoginViewController.swift */,
 				EBE0C91B2910A9DD008D5BB1 /* MapVC.swift */,
 				1E74F6D1291C4B0700E9DC2A /* Picture.swift */,
+				E14469FB291EB04B00AA6ECF /* GoogleService-Info.plist */,
 				EBE0C91D2910A9DD008D5BB1 /* Main.storyboard */,
 				E1AE5220291B1F510016FEF6 /* AddTripVC.swift */,
 				EBE0C9202910A9DD008D5BB1 /* Assets.xcassets */,
@@ -131,6 +142,9 @@
 			dependencies = (
 			);
 			name = travelscrapbookapp;
+			packageProductDependencies = (
+				E14469F5291D707400AA6ECF /* FirebaseAuth */,
+			);
 			productName = travelscrapbookapp;
 			productReference = EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +173,9 @@
 				Base,
 			);
 			mainGroup = EBE0C90B2910A9DC008D5BB1;
+			packageReferences = (
+				E14469F4291D707400AA6ECF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = EBE0C9152910A9DD008D5BB1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +192,7 @@
 			files = (
 				EBE0C9242910A9DD008D5BB1 /* LaunchScreen.storyboard in Resources */,
 				EBE0C9212910A9DD008D5BB1 /* Assets.xcassets in Resources */,
+				E14469FC291EB04B00AA6ECF /* GoogleService-Info.plist in Resources */,
 				84E96D4B291D639900355198 /* cat.jpg in Resources */,
 				EBE0C91F2910A9DD008D5BB1 /* Main.storyboard in Resources */,
 			);
@@ -249,11 +267,13 @@
 				EB79921C291C8FE70048C1EF /* extensions.swift in Sources */,
 				84E96D51291D68C600355198 /* TripStore.swift in Sources */,
 				EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */,
+				E1446A00291EB06100AA6ECF /* CreateAccountViewController.swift in Sources */,
 				1E74F6D2291C4B0700E9DC2A /* Picture.swift in Sources */,
 				84E96D50291D68C600355198 /* TripPhoto.swift in Sources */,
 				EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */,
 				EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */,
 				84E96D4F291D68C600355198 /* Trip.swift in Sources */,
+				E14469FE291EB05800AA6ECF /* LoginViewController.swift in Sources */,
 				E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +496,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E14469F4291D707400AA6ECF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E14469F5291D707400AA6ECF /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E14469F4291D707400AA6ECF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EBE0C90C2910A9DC008D5BB1 /* Project object */;
 }
