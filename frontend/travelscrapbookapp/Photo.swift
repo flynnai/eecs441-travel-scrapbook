@@ -1,5 +1,5 @@
 //
-//  Picture.swift
+//  Photo.swift
 //  travelscrapbookapp
 //
 //  Created by Spencer Todd on 11/9/22.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Photos
 
-struct Picture {
+struct Photo {
     var uId: String // unique identifier (since filename is not unique)
     var data: Data
     var image: UIImage
@@ -17,9 +17,9 @@ struct Picture {
     var lat: Double
     var long: Double
 
-    // return all pictures in the user's photo library
+    // return all photos in the user's photo library
     // discards photos that don't have a location or date
-    static func getPhotos() async throws -> [Picture] {
+    static func getPhotos() async throws -> [Photo] {
         // TODO for MVP: take list of uIDs and return tuple of two lists,
         // one for included images and one for deleted images
 
@@ -39,8 +39,8 @@ struct Picture {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
 
-        let photosTask = Task { () -> [Picture] in
-            var pictures: [Picture] = []
+        let photosTask = Task { () -> [Photo] in
+            var photos: [Photo] = []
             let max = 10
             let max2 = results.count < max ? results.count : max
 
@@ -61,7 +61,7 @@ struct Picture {
                             if let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) {
                                 let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) as! [String: Any]
                                 if let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String {
-                                    let picture = Picture(
+                                    let photo = Photo(
                                         uId: asset.localIdentifier,
                                         data: data,
                                         image: image,
@@ -69,7 +69,7 @@ struct Picture {
                                         lat: coordinate!.latitude,
                                         long: coordinate!.longitude
                                     )
-                                    pictures.append(picture)
+                                    photos.append(photo)
                                 }
                             }
                         } else {
@@ -80,7 +80,7 @@ struct Picture {
                 }
             }
 
-            return pictures
+            return photos
         }
 
         return try await photosTask.result.get()
