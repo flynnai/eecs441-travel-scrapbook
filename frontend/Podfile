@@ -11,6 +11,8 @@ target 'travelscrapbookapp' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
   pod 'SQLite.swift', '~> 0.14'
+  pod 'FirebaseAuth'
+  pod 'Firebase'
 
 end
 

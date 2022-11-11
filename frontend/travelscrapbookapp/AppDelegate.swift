@@ -7,6 +7,7 @@
 // "AIzaSyAD3GbQN_R7ZWa-z4ApopR8DOjzJg9RL3M"
 import UIKit
 import GoogleMaps
+import FirebaseCore
 
 //1
 let googleApiKey = "AIzaSyAD3GbQN_R7ZWa-z4ApopR8DOjzJg9RL3M"
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     //2
     GMSServices.provideAPIKey(googleApiKey)
+      FirebaseApp.configure()
     return true
   }
 }

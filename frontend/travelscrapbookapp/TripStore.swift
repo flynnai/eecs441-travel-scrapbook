@@ -27,12 +27,12 @@ final class TripStore {
         }
     }
 
-    func addTrip(title: String, start: Date, end: Date) {
-        // TODO
-        // 1. get all photos
-        // 2. filter based on date
-        // 3. use Db.insertTrip
-        // 4. use Db.insertPhoto on each remaining photo
-        // 5. use this info to construct the final Trip struct and append it to trips array
-    }
+//    func addTrip(title: String, start: Date, end: Date) {
+//        // TODO
+//        // 1. get all photos
+//        // 2. filter based on date
+//        // 3. use Db.insertTrip
+//        // 4. use Db.insertPhoto on each remaining photo
+//        // 5. use this info to construct the final Trip struct and append it to trips array
+//    }
 }

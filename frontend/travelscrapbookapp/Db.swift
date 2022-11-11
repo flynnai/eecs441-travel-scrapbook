@@ -49,7 +49,7 @@ class Db {
     }
 
     static func reset() {
-        try! FileManager.default.removeItem(atPath: Db.path)
+        try? FileManager.default.removeItem(atPath: Db.path)
     }
 
     // insert a new trip into the db
