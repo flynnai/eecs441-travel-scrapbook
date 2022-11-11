@@ -38,7 +38,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task { print(try await Photo.getPhotos()) } // for demo purposes only
+        Task { print(await Photo.getAllPhotos()) } // for demo purposes only
         Db.demo()
 
         // Do any additional setup after loading the view.

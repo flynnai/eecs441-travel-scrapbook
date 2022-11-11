@@ -19,10 +19,7 @@ struct Photo {
 
     // return all photos in the user's photo library
     // discards photos that don't have a location or date
-    static func getPhotos() async throws -> [Photo] {
-        // TODO for MVP: take list of uIDs and return tuple of two lists,
-        // one for included images and one for deleted images
-
+    static func getAllPhotos() async -> [Photo] {
         // accessing all photos https://stackoverflow.com/a/59858805
         let manager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
@@ -83,6 +80,22 @@ struct Photo {
             return photos
         }
 
-        return try await photosTask.result.get()
+        return try! await photosTask.result.get()
+    }
+
+    // given an entire photo library, sort them into each trip
+    static func sortPhotos(trips tripsIn: [Trip], photoIds: [[String]], photos: [Photo]) -> [Trip] {
+        var trips = tripsIn
+
+        for photo in photos {
+            // note i is not trip id
+            for i in 0..<trips.count {
+                if photoIds[i].contains(photo.uId) {
+                    trips[i].photos.append(photo)
+                }
+            }
+        }
+
+        return trips
     }
 }

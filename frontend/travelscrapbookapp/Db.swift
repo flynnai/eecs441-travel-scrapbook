@@ -14,6 +14,7 @@ class Db {
 
     static let trips = Table("trips")
     static let tripId = Expression<Int64>("id")
+    static let tripTitle = Expression<String>("title")
     static let tripStart = Expression<Date>("start")
     static let tripEnd = Expression<Date>("end")
 
@@ -35,6 +36,7 @@ class Db {
 
         try! db.run(Db.trips.create(ifNotExists: true) { t in
             t.column(Db.tripId, primaryKey: .autoincrement)
+            t.column(Db.tripTitle)
             t.column(Db.tripStart)
             t.column(Db.tripEnd)
         })
@@ -50,8 +52,34 @@ class Db {
         try! FileManager.default.removeItem(atPath: Db.path)
     }
 
-    func insertTrip(start: Date, end: Date) -> Int64 {
-        return try! db.run(Db.trips.insert(Db.tripStart <- start, Db.tripEnd <- end))
+    // insert a new trip into the db
+    // returns the trip id of the new trip
+    func insertTrip(title: String, start: Date, end: Date) -> Int64 {
+        return try! db.run(Db.trips.insert(
+            Db.tripTitle <- title,
+            Db.tripStart <- start,
+            Db.tripEnd <- end
+        ))
+    }
+
+    func getAllTrips() -> ([Trip], [[String]]) {
+        var trips: [Trip] = []
+        var photoIds: [[String]] = []
+
+        for trip in try! db.prepare(Db.trips) {
+            let tripId = trip[Db.tripId]
+            let trip = Trip(
+                id: tripId,
+                title: trip[Db.tripTitle],
+                start: trip[Db.tripStart],
+                end: trip[Db.tripEnd],
+                photos: []
+            )
+            trips.append(trip)
+            photoIds.append(getTripPhotos(tripId: tripId))
+        }
+
+        return (trips, photoIds)
     }
 
     func printTrips() {
@@ -88,7 +116,7 @@ class Db {
         Db.shared.printTrips()
         let start = dateFormatter.date(from: "2022:11:10 21:39:00")!
         let end = dateFormatter.date(from: "2022:12:01 12:00:00")!
-        let tripId = Db.shared.insertTrip(start: start, end: end)
+        let tripId = Db.shared.insertTrip(title: "demo trip", start: start, end: end)
         print("inserted trip \(tripId)")
         Db.shared.printTrips()
 
