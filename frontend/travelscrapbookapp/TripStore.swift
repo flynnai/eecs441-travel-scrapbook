@@ -40,6 +40,9 @@ final class TripStore {
     }
     
     func postTrip(_ trip: Trip) {
-        // TODO send Trip to backend, then on success append to self.trips
+        // TODO add trip to database
+        
+        // TODO only run on success
+        self.trips.append(trip)
     }
 }
