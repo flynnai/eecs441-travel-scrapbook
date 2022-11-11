@@ -8,6 +8,11 @@
 import Foundation
 
 
+struct DBTrip {
+    var title: String
+    var photoIds: [String]
+}
+
 final class TripStore {
     static let shared = TripStore() // create one instance to share
     private init() {} // make constructor private, no other instances can be made
@@ -16,6 +21,22 @@ final class TripStore {
     
     func getTrips(completion: ((Bool) -> ())?) {
         // TODO fetch trips, store in self.trips
+        let dbTrips: [DBTrip] = [] // TODO fetch from DB
+        
+        for dbTrip in dbTrips {
+            do {
+                var localTrip = Trip(
+                    title: dbTrip.title,
+                    photos: try await Photo.getPhotos(dbTrip.photoIds)
+                )
+                self.trips.append(localTrip)
+            } catch {
+                print("Could not fetch photos for dbTrip with title: '\(dbTrip.title)'")
+                print("Error below:")
+                print(error)
+            }
+        }
+        
     }
     
     func postTrip(_ trip: Trip) {

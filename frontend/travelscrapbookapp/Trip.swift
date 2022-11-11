@@ -9,5 +9,5 @@ import Foundation
 
 struct Trip {
     var title: String
-    var photos: [TripPhoto]
+    var photos: [Photo]
 }
