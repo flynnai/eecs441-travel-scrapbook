@@ -72,6 +72,20 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         // Register self to listen to GMSMapViewDelegate events.
         clusterManager.setMapDelegate(self)
         
+        let myTrip = Trip(title: "Some trip!!!", photos: [])
+        
+        var prevPosition: CLLocationCoordinate2D? = nil
+        for photo in myTrip.photos {
+            let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
+            let marker = GMSMarker(position: position)
+            marker.map = mapView
+            marker.icon = photo.image
+            if let prevPosition = prevPosition {
+                draw(src: prevPosition, dst: position, mapView: mapView )
+            }
+            prevPosition = position
+        }
+        
         // add places markers
           let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
           let marker1 = GMSMarker(position: position1)
