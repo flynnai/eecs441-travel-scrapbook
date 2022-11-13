@@ -14,11 +14,26 @@
 
 import UIKit
 
-final class AddTripVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+final class AddTripVC: UIViewController {
     @IBOutlet weak var pickStartDate: UITextField!
     @IBOutlet weak var pickEndDate: UITextField!
-    
+
+    @IBAction func addTrip(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+
+        Task {
+            if let startText = pickStartDate.text, let endText = pickEndDate.text {
+                let start = formatter.date(from: startText)
+                let end = formatter.date(from: endText)
+                if let start = start, let end = end {
+                    await TripStore.shared.addTrip(title: "", start: start, end: end)
+                    dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -59,36 +74,6 @@ final class AddTripVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd yyyy"
         return formatter.string(from: date)
-    }
-    
-    weak var postImage: UIImageView!  // Probably chage this to whatever we want to store images in
-    
-    @IBAction func pickMedia(_ sender: Any) {
-        presentPicker(.photoLibrary)
-    }
-    
-    private func presentPicker(_ sourceType: UIImagePickerController.SourceType) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = sourceType
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        imagePickerController.mediaTypes = ["public.image"]  // No videos allowed
-        present(imagePickerController, animated: true, completion: nil)  // Why is this not presenting?
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
-        if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String {
-            if mediaType  == "public.image" {
-                postImage.image = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage ??
-                                    info[UIImagePickerController.InfoKey.originalImage] as? UIImage)?
-                    .resizeImage(targetSize: CGSize(width: 150, height: 181))
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 

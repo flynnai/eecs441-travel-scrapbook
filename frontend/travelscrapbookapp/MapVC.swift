@@ -38,6 +38,8 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Db.reset()
+
         // Do any additional setup after loading the view.
         // Create a GMSCameraPosition that tells the map to display the
         // se default coordinates and zoom level .

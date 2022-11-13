@@ -95,7 +95,7 @@
         <!--Add Trip-->
         <scene sceneID="hZl-wQ-ujh">
             <objects>
-                <viewController title="Add Trip" id="sxc-Qh-AuM" sceneMemberID="viewController">
+                <viewController title="Add Trip" id="sxc-Qh-AuM" customClass="AddTripVC" customModule="travelscrapbookapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hNK-n3-BYX">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,17 +112,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8R-U0-ato">
-                                <rect key="frame" x="31" y="407" width="327" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Upload Pictures"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYo-a7-slc">
-                                <rect key="frame" x="41" y="495" width="317" height="31"/>
+                                <rect key="frame" x="37" y="288" width="317" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Add Trip"/>
+                                <connections>
+                                    <action selector="addTrip:" destination="sxc-Qh-AuM" eventType="touchUpInside" id="Bme-y7-zWM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gNM-AU-jD7"/>
@@ -131,6 +128,10 @@
                     <navigationItem key="navigationItem" title="Add Trip" id="bCk-qr-4tk">
                         <barButtonItem key="leftBarButtonItem" title="Back" image="arrow.left" catalog="system" id="LNp-ym-tvc"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pickEndDate" destination="1fP-Mg-zIs" id="5Hx-V9-61x"/>
+                        <outlet property="pickStartDate" destination="EW8-x1-Kuk" id="SEQ-MA-wXJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qb8-eA-VMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
