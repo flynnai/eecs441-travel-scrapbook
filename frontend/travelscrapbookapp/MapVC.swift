@@ -28,18 +28,14 @@ extension UIImage {
 
 
 class MapVC: UIViewController, GMSMapViewDelegate {
-    
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
-    
-    
+
     @IBOutlet var addTrip: UIButton!
     @IBOutlet var gallery: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        Db.reset()
-
         // Do any additional setup after loading the view.
         // Create a GMSCameraPosition that tells the map to display the
         // se default coordinates and zoom level .
@@ -48,17 +44,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         self.view.addSubview(mapView)
         self.view.addSubview(gallery)
         self.view.addSubview(addTrip)
-        
-        // Creates a marker in the center of the map
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-        let image = UIImage(named: "cat.jpg")
-        let resizedImage = image?.resized(to: CGSize(width: 70, height: 70))
-        marker.icon = resizedImage
-        
+
         // Set up the cluster manager with the supplied icon generator and
         // renderer.
         let iconGenerator = GMUDefaultClusterIconGenerator()
@@ -70,41 +56,37 @@ class MapVC: UIViewController, GMSMapViewDelegate {
 
         // Register self to listen to GMSMapViewDelegate events.
         clusterManager.setMapDelegate(self)
-        
-        // add places markers
-          let position1 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.33)
-          let marker1 = GMSMarker(position: position1)
-        marker1.map = mapView
-        marker1.icon = resizedImage
-        
-          let position2 = CLLocationCoordinate2D(latitude: 47.60, longitude: -122.46)
-          let marker2 = GMSMarker(position: position2)
-        marker2.map = mapView
-        marker2.icon = resizedImage
-        
-          let position3 = CLLocationCoordinate2D(latitude: 47.30, longitude: -122.46)
-          let marker3 = GMSMarker(position: position3)
-        marker3.map = mapView
-        marker3.icon = resizedImage
 
-          let position4 = CLLocationCoordinate2D(latitude: 47.20, longitude: -122.23)
-          let marker4 = GMSMarker(position: position4)
-        marker4.map = mapView
-        marker4.icon = resizedImage
-        
-          // clusters markers
-          let markerArray = [marker, marker1, marker2, marker3, marker4]
-          clusterManager.add(markerArray)
-          clusterManager.cluster()
-        
-        // draw paths
-         draw(src: position1, dst: position2, mapView: mapView )
-         draw(src: position2, dst: position3, mapView: mapView )
-         draw(src: position3, dst: position4, mapView: mapView )
-        
-        
-  }
-    
+        // TODO: set up observer on TripStore.shared.trips
+    }
+
+    func drawTrips() {
+        for trip in TripStore.shared.trips {
+            var prevPosition: CLLocationCoordinate2D? = nil
+            var markerArray = [GMSMarker]()
+
+            for photo in trip.photos {
+                print("drawing photo \(photo.uId)")
+                let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
+                let marker = GMSMarker(position: position)
+                marker.map = mapView
+                marker.icon = photo.image.resized(to: CGSize(width: 70, height: 70))
+
+                if let prevPosition = prevPosition {
+                    print("drawing line between this photo and previous")
+                    draw(src: prevPosition, dst: position, mapView: mapView)
+                }
+
+                prevPosition = position
+                markerArray.append(marker)
+            }
+
+            clusterManager.add(markerArray)
+        }
+
+        clusterManager.cluster()
+    }
+
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
       // center the map on tapped marker
       mapView.animate(toLocation: marker.position)
@@ -119,7 +101,6 @@ class MapVC: UIViewController, GMSMapViewDelegate {
       NSLog("Did tap a normal marker")
       return false
     }
-    
 
     func draw(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D, mapView: GMSMapView) {
         let path = GMSMutablePath()

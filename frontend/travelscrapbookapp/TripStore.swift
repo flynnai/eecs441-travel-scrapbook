@@ -24,6 +24,7 @@ final class TripStore {
             let (dbTrips, photoIds) = Db.shared.getAllTrips()
             let photos = await Photo.getAllPhotos()
             trips = Photo.sortPhotos(trips: dbTrips, photoIds: photoIds, photos: photos)
+            print("initial trips:", trips)
         }
     }
 
