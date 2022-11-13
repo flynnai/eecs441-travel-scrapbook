@@ -107,23 +107,4 @@ class Db {
         }
         print("end print photos")
     }
-
-    static func demo() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
-
-        Db.reset()
-        Db.shared.printTrips()
-        let start = dateFormatter.date(from: "2022:11:10 21:39:00")!
-        let end = dateFormatter.date(from: "2022:12:01 12:00:00")!
-        let tripId = Db.shared.insertTrip(title: "demo trip", start: start, end: end)
-        print("inserted trip \(tripId)")
-        Db.shared.printTrips()
-
-        Db.shared.printPhotos()
-        Db.shared.insertPhoto(photoId: "123ABC", tripId: tripId)
-        Db.shared.printPhotos()
-        let tripPhotos = Db.shared.getTripPhotos(tripId: tripId)
-        print("trip \(tripId) photos: \(tripPhotos)")
-    }
 }

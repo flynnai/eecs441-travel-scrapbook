@@ -38,7 +38,7 @@ struct Photo {
 
         let photosTask = Task { () -> [Photo] in
             var photos: [Photo] = []
-            let max = 10
+            let max = 100
             let max2 = results.count < max ? results.count : max
 
             for i in 0 ..< max2 {

@@ -27,12 +27,27 @@ final class TripStore {
         }
     }
 
-//    func addTrip(title: String, start: Date, end: Date) {
-//        // TODO
-//        // 1. get all photos
-//        // 2. filter based on date
-//        // 3. use Db.insertTrip
-//        // 4. use Db.insertPhoto on each remaining photo
-//        // 5. use this info to construct the final Trip struct and append it to trips array
-//    }
+    func addTrip(title: String, start: Date, end: Date) async {
+        let photos = await Photo.getAllPhotos()
+        print("photos:")
+        print(photos)
+        let photos2 = photos.filter { photo in
+            let date = photo.date
+            return start <= date && date <= end
+        }
+        print("photos2:")
+        print(photos2)
+        let tripId = Db.shared.insertTrip(title: title, start: start, end: end)
+        for photo in photos {
+            Db.shared.insertPhoto(photoId: photo.uId, tripId: tripId)
+        }
+        let trip = Trip(
+            id: tripId,
+            title: title,
+            start: start,
+            end: end,
+            photos: photos2
+        )
+        trips.append(trip)
+    }
 }
