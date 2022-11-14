@@ -17,7 +17,14 @@ struct Trip {
 
 final class TripStore {
     static let shared = TripStore() // create one instance to share
-    private(set) var trips = [Trip]()
+    
+    let propertyNotifier = NotificationCenter.default
+    let propertyName = NSNotification.Name("TripStore")
+    private(set) var trips = [Trip]() {
+        didSet {
+            propertyNotifier.post(name: propertyName, object: nil)
+        }
+    }
 
     private init() { // make constructor private, no other instances can be made
         Task {

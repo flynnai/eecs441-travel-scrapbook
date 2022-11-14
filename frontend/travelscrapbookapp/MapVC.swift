@@ -57,7 +57,12 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         // Register self to listen to GMSMapViewDelegate events.
         clusterManager.setMapDelegate(self)
 
-        // TODO: set up observer on TripStore.shared.trips
+        TripStore.shared.propertyNotifier.addObserver(
+            self,
+            selector: #selector(propertyObserver(_:)),
+            name: ChattStore.shared.propertyName,
+            object: nil
+        )
     }
 
     func drawTrips() {
@@ -85,6 +90,10 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         }
 
         clusterManager.cluster()
+    }
+    
+    @objc private func propertyObserver(_ event: NSNotification) {
+        self.drawTrips()
     }
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
