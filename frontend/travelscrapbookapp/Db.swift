@@ -40,6 +40,7 @@ class Db {
             t.column(Db.tripStart)
             t.column(Db.tripEnd)
         })
+        
         // try! db.run(Db.photos.drop())
         try! db.run(Db.photos.create(ifNotExists: true) { t in
             t.column(Db.photoId)
@@ -49,7 +50,7 @@ class Db {
         })
     }
 
-    static func reset() {
+    func reset() {
         try? FileManager.default.removeItem(atPath: Db.path)
     }
 

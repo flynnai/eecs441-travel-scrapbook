@@ -40,7 +40,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         // Create a GMSCameraPosition that tells the map to display the
         // se default coordinates and zoom level .
         let camera = GMSCameraPosition.camera(withLatitude: 43.60, longitude: -100, zoom: 3.0)
-        let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
+        mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.view.addSubview(mapView)
         self.view.addSubview(gallery)
         self.view.addSubview(addTrip)
@@ -67,25 +67,32 @@ class MapVC: UIViewController, GMSMapViewDelegate {
 
     func drawTrips() {
         for trip in TripStore.shared.trips {
-            var prevPosition: CLLocationCoordinate2D? = nil
+            // var prevPosition: CLLocationCoordinate2D? = nil
             var markerArray = [GMSMarker]()
-
+            print("my path")
+            let path = GMSMutablePath()
+            var count = 0
+            print(path)
+            print("trip!")
             for photo in trip.photos {
-                print("drawing photo \(photo.uId)")
+                count += 1
+                if count > 10 {
+                    break
+                }
+                // print("drawing photo \(photo.uId)")
                 let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
+                print("position")
+                print(position)
                 let marker = GMSMarker(position: position)
                 marker.map = mapView
                 marker.icon = photo.image.resized(to: CGSize(width: 70, height: 70))
 
-                if let prevPosition = prevPosition {
-                    print("drawing line between this photo and previous")
-                    draw(src: prevPosition, dst: position, mapView: mapView)
-                }
-
-                prevPosition = position
+                print("drawing line between this photo and previous")
+                path.add(position)
+                // prevPosition = position
                 markerArray.append(marker)
             }
-
+            draw(mapView: mapView, path: path)
             clusterManager.add(markerArray)
         }
 
@@ -93,7 +100,9 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     }
     
     @objc private func propertyObserver(_ event: NSNotification) {
-        self.drawTrips()
+        DispatchQueue.main.async {
+            self.drawTrips()
+        }
     }
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -111,10 +120,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
       return false
     }
 
-    func draw(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D, mapView: GMSMapView) {
-        let path = GMSMutablePath()
-        path.add(src)
-        path.add(dst)
+    func draw(mapView: GMSMapView, path: GMSMutablePath) {
 
         let polyline = GMSPolyline(path: path)
         polyline.map = mapView
