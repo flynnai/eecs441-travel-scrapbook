@@ -17,6 +17,10 @@ import UIKit
 final class AddTripVC: UIViewController {
     @IBOutlet weak var pickStartDate: UITextField!
     @IBOutlet weak var pickEndDate: UITextField!
+    
+    @IBAction func closeView(_ sender: Any) {
+            dismiss(animated: true, completion: nil)
+    }
 
     @IBAction func addTrip(_ sender: Any) {
         let formatter = DateFormatter()
