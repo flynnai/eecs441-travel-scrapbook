@@ -17,6 +17,8 @@ import UIKit
 final class AddTripVC: UIViewController {
     @IBOutlet weak var pickStartDate: UITextField!
     @IBOutlet weak var pickEndDate: UITextField!
+    @IBOutlet weak var pickTripName: UITextField!
+    
     
     @IBAction func closeView(_ sender: Any) {
             dismiss(animated: true, completion: nil)
@@ -27,11 +29,11 @@ final class AddTripVC: UIViewController {
         formatter.dateFormat = "MMMM dd yyyy"
 
         Task {
-            if let startText = pickStartDate.text, let endText = pickEndDate.text {
+            if let startText = pickStartDate.text, let endText = pickEndDate.text, let name = pickTripName.text {
                 let start = formatter.date(from: startText)
                 let end = formatter.date(from: endText)
-                if let start = start, let end = end {
-                    await TripStore.shared.addTrip(title: "", start: start, end: end)
+                if let start = start, let end = end, name != "" {
+                    await TripStore.shared.addTrip(title: name, start: start, end: end)
                     dismiss(animated: true, completion: nil)
                 }
             }
