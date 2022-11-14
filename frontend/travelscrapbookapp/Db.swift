@@ -40,11 +40,12 @@ class Db {
             t.column(Db.tripStart)
             t.column(Db.tripEnd)
         })
-
+        // try! db.run(Db.photos.drop())
         try! db.run(Db.photos.create(ifNotExists: true) { t in
-            t.column(Db.photoId, primaryKey: true)
+            t.column(Db.photoId)
             t.column(Db.photoTripId, references: Db.trips, Db.tripId)
             t.foreignKey(Db.photoTripId, references: Db.trips, Db.tripId, delete: .cascade)
+            t.primaryKey(Db.photoId, Db.photoTripId)
         })
     }
 
@@ -77,6 +78,8 @@ class Db {
             )
             trips.append(trip)
             photoIds.append(getTripPhotos(tripId: tripId))
+            print("PhotoIds ")
+            print( photoIds)
         }
 
         return (trips, photoIds)
@@ -91,11 +94,13 @@ class Db {
     }
 
     func insertPhoto(photoId: String, tripId: Int64) {
+        // print("Inserting" + photoId)
         try! db.run(Db.photos.insert(Db.photoId <- photoId, Db.photoTripId <- tripId))
     }
 
     // return photo ID for each photo in the given trip
     func getTripPhotos(tripId: Int64) -> [String] {
+        print("fetching " + String(tripId))
         let query = Db.photos.select(Db.photoId).filter(Db.photoTripId == tripId)
         return try! db.prepare(query).map({ $0[Db.photoId] })
     }

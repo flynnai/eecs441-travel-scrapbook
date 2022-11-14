@@ -60,7 +60,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         TripStore.shared.propertyNotifier.addObserver(
             self,
             selector: #selector(propertyObserver(_:)),
-            name: ChattStore.shared.propertyName,
+            name: TripStore.shared.propertyName,
             object: nil
         )
     }
