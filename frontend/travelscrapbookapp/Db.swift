@@ -34,6 +34,8 @@ class Db {
     private init() {
         db = try! Connection(Db.path)
 
+// uncomment to delete db and reset
+//        try! db.run(Db.trips.drop(ifExists: true))
         try! db.run(Db.trips.create(ifNotExists: true) { t in
             t.column(Db.tripId, primaryKey: .autoincrement)
             t.column(Db.tripTitle)
@@ -41,7 +43,8 @@ class Db {
             t.column(Db.tripEnd)
         })
         
-        // try! db.run(Db.photos.drop())
+// uncomment to delete db and reset
+//        try! db.run(Db.photos.drop(ifExists: true))
         try! db.run(Db.photos.create(ifNotExists: true) { t in
             t.column(Db.photoId)
             t.column(Db.photoTripId, references: Db.trips, Db.tripId)
