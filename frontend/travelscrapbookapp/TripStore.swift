@@ -17,7 +17,7 @@ struct Trip {
 
 final class TripStore {
     static let shared = TripStore() // create one instance to share
-    
+
     let propertyNotifier = NotificationCenter.default
     let propertyName = NSNotification.Name("TripStore")
     private(set) var trips = [Trip]() {
@@ -27,9 +27,9 @@ final class TripStore {
     }
 
     private init() { // make constructor private, no other instances can be made
+        Db.reset()
         Task {
             let (dbTrips, photoIds) = Db.shared.getAllTrips()
-            // Db.shared.reset()
             let photos = await Photo.getAllPhotos()
             trips = Photo.sortPhotos(trips: dbTrips, photoIds: photoIds, photos: photos)
             print("initial trips:", trips)
@@ -57,6 +57,7 @@ final class TripStore {
             end: end,
             photos: photos2
         )
+        print("new trip: \(trip)")
         trips.append(trip)
     }
 }

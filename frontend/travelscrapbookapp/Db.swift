@@ -50,7 +50,7 @@ class Db {
         })
     }
 
-    func reset() {
+    static func reset() {
         try? FileManager.default.removeItem(atPath: Db.path)
     }
 

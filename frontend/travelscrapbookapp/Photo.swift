@@ -11,7 +11,6 @@ import Photos
 
 struct Photo {
     var uId: String // unique identifier (since filename is not unique)
-    var data: Data
     var image: UIImage
     var date: Date
     var lat: Double
@@ -33,13 +32,15 @@ struct Photo {
             return []
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
+        let max = 1000
+        let max2 = results.count < max ? results.count : max
+
+        for i in 0 ..< max2 {
+            print("\(i): \(results.object(at: i))")
+        }
 
         let photosTask = Task { () -> [Photo] in
             var photos: [Photo] = []
-            let max = 100
-            let max2 = results.count < max ? results.count : max
 
             for i in 0 ..< max2 {
                 let asset = results.object(at: i)
@@ -49,29 +50,24 @@ struct Photo {
                 }
 
                 await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in // sequentialize callback function
-                    manager.requestImageDataAndOrientation(for: asset, options: requestOptions) { (data, _, _, _) in
-                        if let data = data {
-                            // ImageIO metadata https://stackoverflow.com/a/52024197
-                            let image = UIImage(data: data as Data)!
-
-                            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
-                            if let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) {
-                                let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc, 0, options as CFDictionary) as! [String: Any]
-                                if let date = (metadata["{TIFF}"] as? [String : Any])?["DateTime"] as? String {
-                                    let photo = Photo(
-                                        uId: asset.localIdentifier,
-                                        data: data,
-                                        image: image,
-                                        date: dateFormatter.date(from: date)!,
-                                        lat: coordinate!.latitude,
-                                        long: coordinate!.longitude
-                                    )
-                                    photos.append(photo)
-                                }
+                    manager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFit, options: requestOptions) { (image, _) in
+                        if let image = image {
+                            if let date = asset.creationDate {
+                                let photo = Photo(
+                                    uId: asset.localIdentifier,
+                                    image: image,
+                                    date: date,
+                                    lat: coordinate!.latitude,
+                                    long: coordinate!.longitude
+                                )
+                                photos.append(photo)
+                            } else {
+                                print("\(i): bad date")
                             }
                         } else {
-                            print("photo \(i): bad data")
+                            print("photo \(i): bad image")
                         }
+
                         cont.resume()
                     }
                 }

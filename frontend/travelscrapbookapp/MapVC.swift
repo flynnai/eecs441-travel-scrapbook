@@ -77,9 +77,9 @@ class MapVC: UIViewController, GMSMapViewDelegate {
             for photo in trip.photos {
                 count += 1
                 if count > 10 {
-                    break
+//                    break
                 }
-                // print("drawing photo \(photo.uId)")
+                print("drawing photo \(photo.uId): \(photo.lat), \(photo.long)")
                 let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
                 print("position")
                 print(position)
@@ -98,7 +98,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
 
         clusterManager.cluster()
     }
-    
+
     @objc private func propertyObserver(_ event: NSNotification) {
         DispatchQueue.main.async {
             self.drawTrips()
