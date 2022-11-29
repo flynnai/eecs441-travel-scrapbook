@@ -10,6 +10,8 @@
 		0CB6E22DD7D698516964CF28 /* Pods_travelscrapbookapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */; };
 		1E74F6D2291C4B0700E9DC2A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74F6D1291C4B0700E9DC2A /* Photo.swift */; };
 		1E8A0938291DC568003C5BE2 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8A0937291DC568003C5BE2 /* Db.swift */; };
+		1E96B20E29366A1F006F8843 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96B20D29366A1F006F8843 /* GalleryVC.swift */; };
+		1E96B21029366ADE006F8843 /* GalleryImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96B20F29366ADE006F8843 /* GalleryImageCell.swift */; };
 		84E96D4B291D639900355198 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E96D4A291D639900355198 /* cat.jpg */; };
 		84E96D51291D68C600355198 /* TripStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E96D4E291D68C600355198 /* TripStore.swift */; };
 		E1446A02291ED4F300AA6ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1446A01291ED4F300AA6ECF /* GoogleService-Info.plist */; };
@@ -29,6 +31,8 @@
 		0E3BCA056E2CFCBF6E86D0D2 /* Pods-travelscrapbookapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelscrapbookapp.release.xcconfig"; path = "Target Support Files/Pods-travelscrapbookapp/Pods-travelscrapbookapp.release.xcconfig"; sourceTree = "<group>"; };
 		1E74F6D1291C4B0700E9DC2A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1E8A0937291DC568003C5BE2 /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
+		1E96B20D29366A1F006F8843 /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
+		1E96B20F29366ADE006F8843 /* GalleryImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageCell.swift; sourceTree = "<group>"; };
 		84E96D4A291D639900355198 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		84E96D4E291D68C600355198 /* TripStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripStore.swift; sourceTree = "<group>"; };
 		CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelscrapbookapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +111,8 @@
 				1E74F6D1291C4B0700E9DC2A /* Photo.swift */,
 				1E8A0937291DC568003C5BE2 /* Db.swift */,
 				EBE0C91D2910A9DD008D5BB1 /* Main.storyboard */,
+				1E96B20F29366ADE006F8843 /* GalleryImageCell.swift */,
+				1E96B20D29366A1F006F8843 /* GalleryVC.swift */,
 				E1446A05291ED50100AA6ECF /* LoginViewController.swift */,
 				E1446A03291ED4F800AA6ECF /* CreateAccountViewController.swift */,
 				E1446A01291ED4F300AA6ECF /* GoogleService-Info.plist */,
@@ -253,9 +259,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E96B20E29366A1F006F8843 /* GalleryVC.swift in Sources */,
 				EB79921C291C8FE70048C1EF /* extensions.swift in Sources */,
 				84E96D51291D68C600355198 /* TripStore.swift in Sources */,
 				EBE0C91C2910A9DD008D5BB1 /* MapVC.swift in Sources */,
+				1E96B21029366ADE006F8843 /* GalleryImageCell.swift in Sources */,
 				1E8A0938291DC568003C5BE2 /* Db.swift in Sources */,
 				1E74F6D2291C4B0700E9DC2A /* Photo.swift in Sources */,
 				EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */,
