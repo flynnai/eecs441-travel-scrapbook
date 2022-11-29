@@ -27,9 +27,12 @@ final class TripStore {
     }
 
     private init() { // make constructor private, no other instances can be made
-        Db.reset()
+//        Db.reset()
         Task {
             let (dbTrips, photoIds) = Db.shared.getAllTrips()
+            print("TripStore init")
+            print("dbTrips: ", dbTrips.count, ": ", dbTrips)
+            print("photoIds: ", photoIds.count, ": ", photoIds)
             let photos = await Photo.getAllPhotos()
             trips = Photo.sortPhotos(trips: dbTrips, photoIds: photoIds, photos: photos)
             print("initial trips:", trips)
@@ -47,7 +50,7 @@ final class TripStore {
         print("photos2:")
         print(photos2)
         let tripId = Db.shared.insertTrip(title: title, start: start, end: end)
-        for photo in photos {
+        for photo in photos2 {
             Db.shared.insertPhoto(photoId: photo.uId, tripId: tripId)
         }
         let trip = Trip(
