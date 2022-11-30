@@ -63,4 +63,24 @@ final class TripStore {
         print("new trip: \(trip)")
         trips.append(trip)
     }
+
+    func deletePhotos(photos: [(String, Int64)]) {
+        print("deleting photos: ", photos)
+        var sortedPhotos: [Int64: [String]] = [:]
+
+        for (photoId, tripId) in photos {
+            if let _ = sortedPhotos[tripId] {} else {
+                sortedPhotos[tripId] = []
+            }
+            sortedPhotos[tripId]!.append(photoId)
+        }
+
+        self.trips = self.trips.map { trip in
+            var trip2 = trip
+            trip2.photos.removeAll { photo in sortedPhotos[trip2.id]?.contains(photo.uId) ?? false }
+            return trip2
+        }
+
+        Db.shared.deletePhotos(photos: photos)
+    }
 }

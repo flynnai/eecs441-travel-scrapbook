@@ -32,10 +32,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     private var clusterManager: GMUClusterManager!
     @IBOutlet var addTrip: UIButton!
     @IBOutlet var gallery: UIButton!
-    //private var markerToPath: [GMSMarker: GMSPolyline] = [:]
-    //private var markerToArray: [GMSMarker: [GMSMarker]] = [:]
-    private var myPhotos: [[Photo]] = []
-    private var deletedPhotos: [Photo] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -80,17 +77,10 @@ class MapVC: UIViewController, GMSMapViewDelegate {
             var count = 0
             print(path)
             print("trip!")
-            var photoArray = [Photo]()
             outerloop: for photo in trip.photos {
                 count += 1
                 if count > 10 {
                     break
-                }
-                // skip rendering deleted photos
-                for deleted in deletedPhotos {
-                    if (deleted.uId == photo.uId) {
-                        continue outerloop
-                    }
                 }
                 print("drawing photo \(photo.image): \(photo.lat), \(photo.long)")
                 let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
@@ -99,17 +89,14 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                 let marker = GMSMarker(position: position)
                 marker.map = mapView
                 marker.icon = photo.image.resized(to: CGSize(width: 90, height: 90))
-                marker.userData = photo.uId
-                
+                marker.userData = (photo.uId, trip.id)
                 print("drawing line between this photo and previous")
                 path.add(position)
                 // prevPosition = position
                 markerArray.append(marker)
-                photoArray.append(photo)  // keep track of all photos for deleting
             }
             draw(mapView: mapView, path: path)
             clusterManager.add(markerArray)
-            myPhotos.append(photoArray)
         }
 
         clusterManager.cluster()
@@ -117,6 +104,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
 
     @objc private func propertyObserver(_ event: NSNotification) {
         DispatchQueue.main.async {
+            print("MapVC: observing updated TripStore")
             self.drawTrips()
         }
     }
@@ -137,52 +125,20 @@ class MapVC: UIViewController, GMSMapViewDelegate {
       return false
     }
 
-    func draw(mapView: GMSMapView, path: GMSMutablePath){
-
+    func draw(mapView: GMSMapView, path: GMSMutablePath) {
         let polyline = GMSPolyline(path: path)
         polyline.map = mapView
         polyline.strokeColor = UIColor.red
         polyline.strokeWidth = 5
     }
-    
+
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf markerDelete: GMSMarker) {
         mapView.clear()
-        
-        for photoArray in myPhotos{
-            
-            let path = GMSMutablePath()
-            var markerArray = [GMSMarker]()
-            
-            outerloop: for photo in photoArray{
-                for deleted in deletedPhotos {
-                    if (deleted.uId == photo.uId) {
-                        continue outerloop
-                    }
-                }
-                if (photo.uId == markerDelete.userData as! String) {
-                    deletedPhotos.append(photo)
-                    print("deleted pohtos")
-                    print(deletedPhotos)
-                    continue
-                }
-                let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
-                let marker = GMSMarker(position: position)
-                marker.map = mapView
-                marker.icon = photo.image.resized(to: CGSize(width: 90, height: 90))
-                marker.userData = photo.uId
-                path.add(position)
-                markerArray.append(marker)
-            }
-            draw(mapView: mapView, path: path)
-            clusterManager.add(markerArray)
-        }
+        let (photoId, tripId) = markerDelete.userData as! (String, Int64)
+        TripStore.shared.deletePhotos(photos: [(photoId, tripId)])
         markerDelete.icon = nil
         markerDelete.map = nil
         markerDelete.opacity = 0
-                
         print("did tap info window")
     }
-    
 }
-
-      

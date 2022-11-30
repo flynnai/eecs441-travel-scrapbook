@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yte-sL-sof">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yte-sL-sof">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rr-UE-DB7">
-                                <rect key="frame" x="288" y="88" width="69" height="53"/>
+                                <rect key="frame" x="288" y="91" width="69" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="0Pb-H1-QqK"/>
                                     <constraint firstAttribute="width" constant="69" id="Kop-1h-O9p"/>
@@ -27,6 +29,9 @@
                                 <buttonConfiguration key="configuration" style="plain">
                                     <backgroundConfiguration key="background" image="photo" catalog="system"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="jAd-Fd-lrM" kind="show" id="V4k-9a-Yjg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjW-xK-2Dg">
                                 <rect key="frame" x="288" y="660" width="69" height="69"/>
@@ -67,29 +72,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1917" y="-124"/>
-        </scene>
-        <!--OLD Add Trip-->
-        <scene sceneID="yRL-vT-VQ1">
-            <objects>
-                <tableViewController title="OLD Add Trip" id="6f2-dV-K6D" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Add Trip" id="KDW-K0-e9t">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Fxp-fe-Pil">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="A95-KR-lFk">
-                                <rect key="frame" x="288" y="11" width="86" height="34.333333333333336"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
-                            <connections>
-                                <action selector="pickMedia:" destination="DzR-lR-oDs" id="yr2-jt-3VM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <exit id="DzR-lR-oDs" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ps5-Ak-dWr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-934" y="-813"/>
         </scene>
         <!--Add Trip-->
         <scene sceneID="hZl-wQ-ujh">
@@ -154,7 +136,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="xUu-KA-pCV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLl-qL-3CT">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -343,7 +325,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yte-sL-sof" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z1u-bU-Pgv">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -418,17 +400,134 @@
             </objects>
             <point key="canvasLocation" x="-2623" y="369"/>
         </scene>
+        <!--GalleryVC-->
+        <scene sceneID="piY-wp-ENN">
+            <objects>
+                <viewController id="jAd-Fd-lrM" customClass="GalleryVC" customModule="travelscrapbookapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DMi-yG-sSH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OIz-ea-cmt">
+                                <rect key="frame" x="0.0" y="91" width="390" height="614"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r9a-6L-RQ2">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryImageCell" id="g65-Sb-mi2" customClass="GalleryImageCell" customModule="travelscrapbookapp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="66" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fLg-f0-y6o">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="awI-3N-BUS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="awI-3N-BUS" secondAttribute="height" multiplier="1:1" id="3Vo-kL-Y5K"/>
+                                                        <constraint firstAttribute="width" constant="66" id="ELr-M7-GxB"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pcV-c6-6le">
+                                                    <rect key="frame" x="41.666666666666664" y="4.9999999999999982" width="20.333333333333336" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="pcV-c6-6le" secondAttribute="height" multiplier="1:1" id="pg7-qT-kO4"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="awI-3N-BUS" secondAttribute="bottom" id="5YI-Qw-P5q"/>
+                                                <constraint firstItem="pcV-c6-6le" firstAttribute="top" secondItem="fLg-f0-y6o" secondAttribute="top" constant="4" id="7sl-LJ-o2H"/>
+                                                <constraint firstItem="awI-3N-BUS" firstAttribute="leading" secondItem="fLg-f0-y6o" secondAttribute="leading" id="GnN-jb-C9m"/>
+                                                <constraint firstAttribute="trailing" secondItem="pcV-c6-6le" secondAttribute="trailing" constant="4" id="abL-H7-zSr"/>
+                                                <constraint firstItem="awI-3N-BUS" firstAttribute="top" secondItem="fLg-f0-y6o" secondAttribute="top" id="leW-BL-6b5"/>
+                                                <constraint firstAttribute="trailing" secondItem="awI-3N-BUS" secondAttribute="trailing" id="ptk-DL-V0j"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="image" destination="awI-3N-BUS" id="xR3-Or-jGW"/>
+                                            <outlet property="selectedIcon" destination="pcV-c6-6le" id="ZzT-Zn-Gsc"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="GalleryTripTitle" id="h9h-jp-iah" customClass="GalleryTripTitle" customModule="travelscrapbookapp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hin-Qm-K4U">
+                                            <rect key="frame" x="20" y="14.666666666666664" width="66.333333333333329" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hin-Qm-K4U" firstAttribute="leading" secondItem="h9h-jp-iah" secondAttribute="leadingMargin" constant="12" id="IjW-ap-wNa"/>
+                                        <constraint firstItem="hin-Qm-K4U" firstAttribute="centerY" secondItem="h9h-jp-iah" secondAttribute="centerY" id="S9k-Gv-C7P"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="hin-Qm-K4U" secondAttribute="trailing" constant="100" id="fRa-AJ-wgh"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="tripTitle" destination="hin-Qm-K4U" id="vyW-AK-65d"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="jAd-Fd-lrM" id="TFH-rL-0rR"/>
+                                    <outlet property="delegate" destination="jAd-Fd-lrM" id="0ZJ-6c-ptM"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-Kp-d4U">
+                                <rect key="frame" x="346" y="717" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="SYS-KB-zSt"/>
+                                    <constraint firstAttribute="width" secondItem="Pmd-Kp-d4U" secondAttribute="height" multiplier="1:1" id="fPD-mI-sLd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteSelectedPhotos:" destination="jAd-Fd-lrM" eventType="touchUpInside" id="nUi-1i-0Hs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FZb-Gn-mMM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="bottom" secondItem="Pmd-Kp-d4U" secondAttribute="bottom" constant="12" id="5wA-0l-0Zk"/>
+                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="trailing" secondItem="Pmd-Kp-d4U" secondAttribute="trailing" constant="12" id="Vjs-6a-a9c"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="leading" secondItem="FZb-Gn-mMM" secondAttribute="leading" id="cT6-Tx-PPP"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="trailing" secondItem="FZb-Gn-mMM" secondAttribute="trailing" id="hZR-3o-gqx"/>
+                            <constraint firstItem="Pmd-Kp-d4U" firstAttribute="top" secondItem="OIz-ea-cmt" secondAttribute="bottom" constant="12" id="zlU-US-Ksz"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="top" secondItem="FZb-Gn-mMM" secondAttribute="top" id="zyq-G4-UIz"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="afk-wJ-JKu"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="grid" destination="OIz-ea-cmt" id="Haw-t0-Mkc"/>
+                        <outlet property="trashButton" destination="Pmd-Kp-d4U" id="JpB-XV-z5W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kwg-S1-XOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1372.3076923076922" y="662.55924170616106"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Qk0-6H-i1H"/>
         <segue reference="1P7-AR-1O6"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="background" width="2987" height="3613"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="cover" width="1560" height="3376"/>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <image name="trash.fill" catalog="system" width="119" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
