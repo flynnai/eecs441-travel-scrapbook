@@ -13,6 +13,7 @@ target 'travelscrapbookapp' do
   pod 'SQLite.swift', '~> 0.14'
   pod 'FirebaseAuth'
   pod 'Firebase'
+  pod 'TensorFlowLiteTaskVision'
 
 end
 

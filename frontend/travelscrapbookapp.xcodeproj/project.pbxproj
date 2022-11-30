@@ -17,6 +17,8 @@
 		E1446A04291ED4F800AA6ECF /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1446A03291ED4F800AA6ECF /* CreateAccountViewController.swift */; };
 		E1446A06291ED50100AA6ECF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1446A05291ED50100AA6ECF /* LoginViewController.swift */; };
 		E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AE5220291B1F510016FEF6 /* AddTripVC.swift */; };
+		EB33A6C029380F8B007F3E8F /* ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB33A6BF29380F8B007F3E8F /* ML.swift */; };
+		EB33A6C2293812ED007F3E8F /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = EB33A6C1293812ED007F3E8F /* model.tflite */; };
 		EB79921C291C8FE70048C1EF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB79921B291C8FE70048C1EF /* extensions.swift */; };
 		EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */; };
 		EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */; };
@@ -39,6 +41,8 @@
 		E1446A03291ED4F800AA6ECF /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		E1446A05291ED50100AA6ECF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E1AE5220291B1F510016FEF6 /* AddTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripVC.swift; sourceTree = "<group>"; };
+		EB33A6BF29380F8B007F3E8F /* ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ML.swift; sourceTree = "<group>"; };
+		EB33A6C1293812ED007F3E8F /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		EB79921B291C8FE70048C1EF /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelscrapbookapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		EBE0C9162910A9DD008D5BB1 /* travelscrapbookapp */ = {
 			isa = PBXGroup;
 			children = (
+				EB33A6C1293812ED007F3E8F /* model.tflite */,
+				EB33A6BF29380F8B007F3E8F /* ML.swift */,
 				84E96D4E291D68C600355198 /* TripStore.swift */,
 				84E96D4A291D639900355198 /* cat.jpg */,
 				EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */,
@@ -183,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE0C9242910A9DD008D5BB1 /* LaunchScreen.storyboard in Resources */,
+				EB33A6C2293812ED007F3E8F /* model.tflite in Resources */,
 				EBE0C9212910A9DD008D5BB1 /* Assets.xcassets in Resources */,
 				E1446A02291ED4F300AA6ECF /* GoogleService-Info.plist in Resources */,
 				84E96D4B291D639900355198 /* cat.jpg in Resources */,
@@ -264,6 +271,7 @@
 				1E74F6D2291C4B0700E9DC2A /* Photo.swift in Sources */,
 				EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */,
 				E1446A04291ED4F800AA6ECF /* CreateAccountViewController.swift in Sources */,
+				EB33A6C029380F8B007F3E8F /* ML.swift in Sources */,
 				EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */,
 				E1446A06291ED50100AA6ECF /* LoginViewController.swift in Sources */,
 				E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */,

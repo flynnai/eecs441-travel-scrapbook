@@ -15,18 +15,17 @@ class MachineLearning {
     let classifier // TODO find type
     private init() {
         // Initialization
-        guard let modelPath = Bundle.main.path(forResource: "birds_V1",
+        guard let modelPath = Bundle.main.path(forResource: "model",
                                                     ofType: "tflite") else { return }
 
         let options = ImageClassifierOptions(modelPath: modelPath)
 
         // Configure any additional options:
         // options.classificationOptions.maxResults = 3
-
         classifier = try ImageClassifier.classifier(options: options)
     }
-.
-    classifyPhoto(photo: Photo) {
+    
+    func classifyPhoto(photo: Photo)-> Bool {
         // Convert the input image to MLImage.
         // There are other sources for MLImage. For more details, please see:
         // https://developers.google.com/ml-kit/reference/ios/mlimage/api/reference/Classes/GMLImage
