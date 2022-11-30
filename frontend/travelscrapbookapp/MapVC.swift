@@ -69,6 +69,8 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     }
 
     func drawTrips() {
+        mapView.clear()
+
         for trip in TripStore.shared.trips {
             // var prevPosition: CLLocationCoordinate2D? = nil
             var markerArray = [GMSMarker]()
