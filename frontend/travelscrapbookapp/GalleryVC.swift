@@ -63,10 +63,10 @@ class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     }
 }
 
-class GalleryImageCell: UICollectionViewCell {
-    @IBOutlet var image: UIImageView!
+class GalleryTripTitle: UICollectionReusableView {
+    @IBOutlet weak var tripTitle: UILabel!
 }
 
-class GalleryTripTitle: UICollectionReusableView {
-    @IBOutlet var tripTitle: UILabel!
+class GalleryImageCell: UICollectionViewCell {
+    @IBOutlet weak var image: UIImageView!
 }
