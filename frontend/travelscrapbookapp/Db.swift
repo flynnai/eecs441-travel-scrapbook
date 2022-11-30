@@ -116,4 +116,11 @@ class Db {
         }
         print("end print photos")
     }
+
+    // pair of photo id and trip id
+    func deletePhotos(photos: [(String, Int64)]) {
+        for (photoId, tripId) in photos {
+            try! db.run(Db.photos.filter(Db.photoId == photoId && Db.photoTripId == tripId).delete())
+        }
+    }
 }

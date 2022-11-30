@@ -8,11 +8,18 @@
 import Foundation
 import UIKit
 
-class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     @IBOutlet weak var grid: UICollectionView!
+    @IBOutlet weak var trashButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.updateTrashVisibility()
+        self.grid.allowsSelection = true
+        self.grid.allowsSelectionDuringEditing = true
+        self.grid.allowsMultipleSelection = true
+        self.grid.allowsMultipleSelectionDuringEditing = true
         TripStore.shared.propertyNotifier.addObserver(
             self,
             selector: #selector(tripStoreObserver(_:)),
@@ -23,6 +30,7 @@ class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
 
     @objc private func tripStoreObserver(_ event: NSNotification) {
         DispatchQueue.main.async {
+            self.updateTrashVisibility()
             self.grid.reloadData()
         }
     }
@@ -47,6 +55,7 @@ class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
 
         let trip = TripStore.shared.trips[indexPath.section]
         cell.image.image = trip.photos[indexPath.row].image
+        cell.selectedIcon.isHidden = true
         return cell
     }
 
@@ -61,6 +70,46 @@ class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         cell.tripTitle.text = trip.title
         return cell
     }
+
+    // did select item at
+    // for collection delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard self.isEditing else { return }
+        print("selecting image: ", indexPath)
+        let cell = self.grid.cellForItem(at: indexPath) as! GalleryImageCell
+        cell.selectedIcon.isHidden = false
+        self.updateTrashVisibility()
+    }
+
+    // did de-select item at
+    // for collection delegate
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard self.isEditing else { return }
+        print("deselecting image: ", indexPath)
+        let cell = self.grid.cellForItem(at: indexPath) as! GalleryImageCell
+        cell.selectedIcon.isHidden = true
+        self.updateTrashVisibility()
+    }
+
+    private func updateTrashVisibility() {
+        let isNoPhotoSelected: Bool = (self.grid.indexPathsForSelectedItems ?? []).isEmpty
+        self.trashButton.isHidden = !self.isEditing || isNoPhotoSelected
+    }
+
+    @IBAction func deleteSelectedPhotos(_ sender: Any) {
+        print("deleting selected photos")
+        print("index paths for visible items: ", self.grid.indexPathsForSelectedItems ?? [])
+        var photos: [(String, Int64)] = []
+
+        for index in self.grid.indexPathsForSelectedItems ?? [] {
+            let trip = TripStore.shared.trips[index.section]
+            let photo = trip.photos[index.row]
+            photos.append((photo.uId, trip.id))
+        }
+
+        TripStore.shared.deletePhotos(photos: photos)
+        self.isEditing = false
+    }
 }
 
 class GalleryTripTitle: UICollectionReusableView {
@@ -69,4 +118,5 @@ class GalleryTripTitle: UICollectionReusableView {
 
 class GalleryImageCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var selectedIcon: UIImageView!
 }

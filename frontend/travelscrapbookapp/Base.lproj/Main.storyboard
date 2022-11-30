@@ -409,7 +409,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OIz-ea-cmt">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="614"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r9a-6L-RQ2">
                                     <size key="itemSize" width="128" height="128"/>
@@ -432,16 +432,25 @@
                                                         <constraint firstAttribute="width" constant="66" id="ELr-M7-GxB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pcV-c6-6le">
+                                                    <rect key="frame" x="41.666666666666664" y="4.9999999999999982" width="20.333333333333336" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="pcV-c6-6le" secondAttribute="height" multiplier="1:1" id="pg7-qT-kO4"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="awI-3N-BUS" secondAttribute="bottom" id="5YI-Qw-P5q"/>
+                                                <constraint firstItem="pcV-c6-6le" firstAttribute="top" secondItem="fLg-f0-y6o" secondAttribute="top" constant="4" id="7sl-LJ-o2H"/>
                                                 <constraint firstItem="awI-3N-BUS" firstAttribute="leading" secondItem="fLg-f0-y6o" secondAttribute="leading" id="GnN-jb-C9m"/>
+                                                <constraint firstAttribute="trailing" secondItem="pcV-c6-6le" secondAttribute="trailing" constant="4" id="abL-H7-zSr"/>
                                                 <constraint firstItem="awI-3N-BUS" firstAttribute="top" secondItem="fLg-f0-y6o" secondAttribute="top" id="leW-BL-6b5"/>
                                                 <constraint firstAttribute="trailing" secondItem="awI-3N-BUS" secondAttribute="trailing" id="ptk-DL-V0j"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="image" destination="awI-3N-BUS" id="xR3-Or-jGW"/>
+                                            <outlet property="selectedIcon" destination="pcV-c6-6le" id="ZzT-Zn-Gsc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -470,24 +479,41 @@
                                     <outlet property="delegate" destination="jAd-Fd-lrM" id="0ZJ-6c-ptM"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-Kp-d4U">
+                                <rect key="frame" x="346" y="717" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="SYS-KB-zSt"/>
+                                    <constraint firstAttribute="width" secondItem="Pmd-Kp-d4U" secondAttribute="height" multiplier="1:1" id="fPD-mI-sLd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteSelectedPhotos:" destination="jAd-Fd-lrM" eventType="touchUpInside" id="nUi-1i-0Hs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FZb-Gn-mMM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OIz-ea-cmt" firstAttribute="leading" secondItem="FZb-Gn-mMM" secondAttribute="leading" id="5sq-xu-QXp"/>
-                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="trailing" secondItem="OIz-ea-cmt" secondAttribute="trailing" id="fLW-Nc-4F9"/>
-                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="bottom" secondItem="OIz-ea-cmt" secondAttribute="bottom" id="q9H-kY-Tnu"/>
-                            <constraint firstItem="OIz-ea-cmt" firstAttribute="top" secondItem="FZb-Gn-mMM" secondAttribute="top" id="vV2-HX-4ix"/>
+                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="bottom" secondItem="Pmd-Kp-d4U" secondAttribute="bottom" constant="12" id="5wA-0l-0Zk"/>
+                            <constraint firstItem="FZb-Gn-mMM" firstAttribute="trailing" secondItem="Pmd-Kp-d4U" secondAttribute="trailing" constant="12" id="Vjs-6a-a9c"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="leading" secondItem="FZb-Gn-mMM" secondAttribute="leading" id="cT6-Tx-PPP"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="trailing" secondItem="FZb-Gn-mMM" secondAttribute="trailing" id="hZR-3o-gqx"/>
+                            <constraint firstItem="Pmd-Kp-d4U" firstAttribute="top" secondItem="OIz-ea-cmt" secondAttribute="bottom" constant="12" id="zlU-US-Ksz"/>
+                            <constraint firstItem="OIz-ea-cmt" firstAttribute="top" secondItem="FZb-Gn-mMM" secondAttribute="top" id="zyq-G4-UIz"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="afk-wJ-JKu"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="grid" destination="OIz-ea-cmt" id="Haw-t0-Mkc"/>
+                        <outlet property="trashButton" destination="Pmd-Kp-d4U" id="JpB-XV-z5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwg-S1-XOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1372" y="663"/>
+            <point key="canvasLocation" x="-1372.3076923076922" y="662.55924170616106"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -497,9 +523,11 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="background" width="2987" height="3613"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="cover" width="1560" height="3376"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <image name="trash.fill" catalog="system" width="119" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
