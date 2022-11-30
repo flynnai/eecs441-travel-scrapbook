@@ -49,4 +49,24 @@ class GalleryVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         cell.image.image = trip.photos[indexPath.row].image
         return cell
     }
+
+    // view for supplementary element
+    // for data source
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let cell = self.grid.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "GalleryTripTitle", for: indexPath) as? GalleryTripTitle else {
+            fatalError("GalleryVC: no reuseable supplementary cell")
+        }
+
+        let trip = TripStore.shared.trips[indexPath.section]
+        cell.tripTitle.text = trip.title
+        return cell
+    }
+}
+
+class GalleryImageCell: UICollectionViewCell {
+    @IBOutlet var image: UIImageView!
+}
+
+class GalleryTripTitle: UICollectionReusableView {
+    @IBOutlet var tripTitle: UILabel!
 }
