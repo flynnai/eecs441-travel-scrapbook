@@ -45,7 +45,8 @@ final class TripStore {
         print(photos)
         let photos2 = photos.filter { photo in
             let date = photo.date
-            return start <= date && date <= end
+            print("Image classified as: ", MachineLearning.shared.classifyPhoto(photo: photo))
+            return start <= date && date <= end && MachineLearning.shared.classifyPhoto(photo: photo)
         }
         print("photos2:")
         print(photos2)
