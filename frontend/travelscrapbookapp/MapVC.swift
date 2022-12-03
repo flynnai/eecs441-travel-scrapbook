@@ -44,22 +44,8 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         self.view.addSubview(gallery)
         self.view.addSubview(addTrip)
 
-        // Set up the cluster manager with the supplied icon generator and
-        // renderer.
-        let iconGenerator = GMUDefaultClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
-                                    clusterIconGenerator: iconGenerator)
-        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,
-                                                          renderer: renderer)
-        
-        
-        
+        self.initClusterManager()
 
-        // Register self to listen to GMSMapViewDelegate events.
-        clusterManager.setMapDelegate(self)
-        
-        
         TripStore.shared.propertyNotifier.addObserver(
             self,
             selector: #selector(propertyObserver(_:)),
@@ -68,8 +54,26 @@ class MapVC: UIViewController, GMSMapViewDelegate {
         )
     }
 
-    func drawTrips() {
+    // Set up the cluster manager with the supplied icon generator and renderer.
+    func initClusterManager() {
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
+                                    clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,
+                                                          renderer: renderer)
+
+        // Register self to listen to GMSMapViewDelegate events.
+        clusterManager.setMapDelegate(self)
+    }
+
+    func clear() {
         mapView.clear()
+        self.initClusterManager()
+    }
+
+    func drawTrips() {
+        self.clear()
 
         for trip in TripStore.shared.trips {
             // var prevPosition: CLLocationCoordinate2D? = nil
@@ -84,7 +88,7 @@ class MapVC: UIViewController, GMSMapViewDelegate {
                 if count > 10 {
                     break
                 }
-                print("drawing photo \(photo.image): \(photo.lat), \(photo.long)")
+                print("drawing photo \(photo.uId)  \(photo.image): \(photo.lat), \(photo.long)")
                 let position = CLLocationCoordinate2D(latitude: photo.lat, longitude: photo.long)
                 print("position")
                 print(position)
@@ -135,7 +139,6 @@ class MapVC: UIViewController, GMSMapViewDelegate {
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf markerDelete: GMSMarker) {
-        mapView.clear()
         let (photoId, tripId) = markerDelete.userData as! (String, Int64)
         TripStore.shared.deletePhotos(photos: [(photoId, tripId)])
         markerDelete.icon = nil
