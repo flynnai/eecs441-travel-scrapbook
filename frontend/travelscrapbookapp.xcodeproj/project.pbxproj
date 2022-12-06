@@ -11,6 +11,7 @@
 		1E74F6D2291C4B0700E9DC2A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74F6D1291C4B0700E9DC2A /* Photo.swift */; };
 		1E8A0938291DC568003C5BE2 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8A0937291DC568003C5BE2 /* Db.swift */; };
 		1E96B20E29366A1F006F8843 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96B20D29366A1F006F8843 /* GalleryVC.swift */; };
+		84DC41EF293EF16C00234D37 /* converted_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 84DC41EE293EF16C00234D37 /* converted_model.tflite */; };
 		84E96D4B291D639900355198 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E96D4A291D639900355198 /* cat.jpg */; };
 		84E96D51291D68C600355198 /* TripStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E96D4E291D68C600355198 /* TripStore.swift */; };
 		E1446A02291ED4F300AA6ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1446A01291ED4F300AA6ECF /* GoogleService-Info.plist */; };
@@ -33,6 +34,7 @@
 		1E74F6D1291C4B0700E9DC2A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1E8A0937291DC568003C5BE2 /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
 		1E96B20D29366A1F006F8843 /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
+		84DC41EE293EF16C00234D37 /* converted_model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = converted_model.tflite; sourceTree = "<group>"; };
 		84E96D4A291D639900355198 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		84E96D4E291D68C600355198 /* TripStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripStore.swift; sourceTree = "<group>"; };
 		CDC0A4F7DA60BD078729D7C9 /* Pods_travelscrapbookapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travelscrapbookapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 		EBE0C9162910A9DD008D5BB1 /* travelscrapbookapp */ = {
 			isa = PBXGroup;
 			children = (
+				84DC41EE293EF16C00234D37 /* converted_model.tflite */,
 				EB33A6C1293812ED007F3E8F /* model.tflite */,
 				EB33A6BF29380F8B007F3E8F /* ML.swift */,
 				84E96D4E291D68C600355198 /* TripStore.swift */,
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE0C9242910A9DD008D5BB1 /* LaunchScreen.storyboard in Resources */,
+				84DC41EF293EF16C00234D37 /* converted_model.tflite in Resources */,
 				EB33A6C2293812ED007F3E8F /* model.tflite in Resources */,
 				EBE0C9212910A9DD008D5BB1 /* Assets.xcassets in Resources */,
 				E1446A02291ED4F300AA6ECF /* GoogleService-Info.plist in Resources */,

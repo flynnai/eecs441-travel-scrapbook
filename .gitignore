@@ -1,5 +1,7 @@
 # EECS441 chatterd binary
 chatterd/chatterd
+# converted_model is too big, should not be committed
+converted_model.tflite
 
 # macOS files
 .DS_Store

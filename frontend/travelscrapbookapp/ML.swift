@@ -17,7 +17,7 @@ final class MachineLearning {
     
     private init() {
         // Initialization
-        guard let modelPath = Bundle.main.path(forResource: "model",
+        guard let modelPath = Bundle.main.path(forResource: "converted_model",
                                                     ofType: "tflite") else {
             classifier = nil
             return
