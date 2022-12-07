@@ -48,12 +48,9 @@ final class MachineLearning {
 
         // Run inference
         let classificationResults: ClassificationResult = try! classifier.classify(mlImage: mlImage)
-        print("Swift is fun: ", classificationResults.classifications.debugDescription)
+        print("Swift is fun: ", classificationResults.classifications[0].categories[0].score)
 
-        // TODO find way to get classificationResults into single boolean
-        //var isGood = true
-
-        return true
+        return classificationResults.classifications[0].categories[0].score > 0.3
     }
 }
 
