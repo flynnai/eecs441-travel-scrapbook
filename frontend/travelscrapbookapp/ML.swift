@@ -9,8 +9,6 @@ import Foundation
 import OSLog
 import TensorFlowLiteTaskVision
 
-// THIS DOES NOT WORK YET (if it doesn't compile, comment it out)
-
 final class MachineLearning {
     static let shared = MachineLearning() // singleton instance
     let classifier: ImageClassifier!
@@ -37,6 +35,12 @@ final class MachineLearning {
         // Convert the input image to MLImage.
         // There are other sources for MLImage. For more details, please see:
         // https://developers.google.com/ml-kit/reference/ios/mlimage/api/reference/Classes/GMLImage
+
+        // resize image
+        let size = CGSize(width: 200, height: 200)
+        let resizedImage = photo.image.resized(to:size)
+        
+        print("Classifying image with size ", resizedImage.size.width, resizedImage.size.height)
         guard let mlImage = MLImage(image: photo.image) else {
             print("Image Classifier Failed")
             return false
