@@ -19,7 +19,6 @@
 		E1446A06291ED50100AA6ECF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1446A05291ED50100AA6ECF /* LoginViewController.swift */; };
 		E1AE5221291B1F510016FEF6 /* AddTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AE5220291B1F510016FEF6 /* AddTripVC.swift */; };
 		EB33A6C029380F8B007F3E8F /* ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB33A6BF29380F8B007F3E8F /* ML.swift */; };
-		EB33A6C2293812ED007F3E8F /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = EB33A6C1293812ED007F3E8F /* model.tflite */; };
 		EB79921C291C8FE70048C1EF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB79921B291C8FE70048C1EF /* extensions.swift */; };
 		EBE0C9182910A9DD008D5BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */; };
 		EBE0C91A2910A9DD008D5BB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0C9192910A9DD008D5BB1 /* SceneDelegate.swift */; };
@@ -44,7 +43,6 @@
 		E1446A05291ED50100AA6ECF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E1AE5220291B1F510016FEF6 /* AddTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripVC.swift; sourceTree = "<group>"; };
 		EB33A6BF29380F8B007F3E8F /* ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ML.swift; sourceTree = "<group>"; };
-		EB33A6C1293812ED007F3E8F /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		EB79921B291C8FE70048C1EF /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		EBE0C9142910A9DD008D5BB1 /* travelscrapbookapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelscrapbookapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE0C9172910A9DD008D5BB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				84DC41EE293EF16C00234D37 /* converted_model.tflite */,
-				EB33A6C1293812ED007F3E8F /* model.tflite */,
 				EB33A6BF29380F8B007F3E8F /* ML.swift */,
 				84E96D4E291D68C600355198 /* TripStore.swift */,
 				84E96D4A291D639900355198 /* cat.jpg */,
@@ -193,7 +190,6 @@
 			files = (
 				EBE0C9242910A9DD008D5BB1 /* LaunchScreen.storyboard in Resources */,
 				84DC41EF293EF16C00234D37 /* converted_model.tflite in Resources */,
-				EB33A6C2293812ED007F3E8F /* model.tflite in Resources */,
 				EBE0C9212910A9DD008D5BB1 /* Assets.xcassets in Resources */,
 				E1446A02291ED4F300AA6ECF /* GoogleService-Info.plist in Resources */,
 				84E96D4B291D639900355198 /* cat.jpg in Resources */,
