@@ -50,7 +50,7 @@ final class MachineLearning {
         let classificationResults: ClassificationResult = try! classifier.classify(mlImage: mlImage)
         print("Swift is fun: ", classificationResults.classifications[0].categories[0].score)
 
-        return classificationResults.classifications[0].categories[0].score > 0.3
+        return classificationResults.classifications[0].categories[0].score < 0.15
     }
 }
 
