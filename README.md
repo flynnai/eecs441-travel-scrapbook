@@ -7,6 +7,6 @@
 ![Elevator Pitch](https://user-images.githubusercontent.com/93233828/206580226-69c378d1-608e-4bd4-879d-a2383b808c69.jpeg) <!-- MUST be placed in user-images.githubusercontent.com -->
 ![Team](https://github.com/flynnai/eecs441-travel-scrapbook/blob/main/TravelScrapbook-teamslide.jpeg?raw=true)
 
-[video_page]: https://youtu.be/sample
+[video_page]: https://www.youtube.com/watch?v=kEX0rxbdzBE
 [wiki_page]: https://github.com/flynnai/eecs441-travel-scrapbook/wiki
 [agile_page]: https://trello.com/b/zrCFN6eW/travel-scrapbook
