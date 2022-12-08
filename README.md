@@ -8,5 +8,5 @@
 ![Team](/assets/team.png)
 
 [video_page]: https://youtu.be/sample
-[wiki_page]: https://github.com/member/team/wiki
-[agile_page]: https://trello.com/b/sample/general
+[wiki_page]: https://github.com/flynnai/eecs441-travel-scrapbook/wiki
+[agile_page]: https://trello.com/b/zrCFN6eW/travel-scrapbook
