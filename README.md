@@ -1,4 +1,4 @@
-# UM EECS441§3&4 F22 travel-scrapbook
+# UM EECS441 F22 travel-scrapbook
 
 | Video  |  Wiki |  Trello  |
 |:-----:|:-----:|:--------:|
